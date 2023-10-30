@@ -1,16 +1,16 @@
 ---
-title: "Reference"
+title: "Domains"
 description: ""
 summary: ""
-date: 2023-09-07T16:12:37+02:00
-lastmod: 2023-09-07T16:12:37+02:00
+date: 2023-09-07T17:19:07+02:00
+lastmod: 2023-09-07T17:19:07+02:00
 draft: false
-menu:
-  domains:
-    parent: ""
-    identifier: "reference-22e9ba8aefa7ef9891199cf8db3a08cd"
-weight: 900
-toc: true
+weight: 50
+categories: []
+tags: []
+contributors: []
+pinned: false
+homepage: false
 seo:
   title: "" # custom title (optional)
   description: "" # custom description (recommended)
