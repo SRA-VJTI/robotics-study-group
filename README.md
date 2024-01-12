@@ -1,7 +1,6 @@
 #  Embedded Systems Study Group
 
-* [Week 1:](week1/week1.md)
-    - Session 0
+* [Week 1:](week1/Session0.md)
     - Lecture 1
 
 
