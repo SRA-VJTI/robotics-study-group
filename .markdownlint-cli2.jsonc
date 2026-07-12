@@ -5,7 +5,6 @@
   "ignores": [
     "Tutorials/**",
     "week1/**",
-    ".bundle/**",
     "tmp/**"
   ]
 }

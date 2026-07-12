@@ -2,6 +2,10 @@
 
 [← Sequence Modeling](week-07-sequence-modeling.md) · **Week 8 of 11** · [Next: Generalist Policies →](week-09-generalist-policies.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="08" count=55 title="Lecture 8: World Models" %}
+
 ## Outcomes
 
 - Separate representation, dynamics, reward, and policy components.

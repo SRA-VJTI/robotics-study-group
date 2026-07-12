@@ -2,6 +2,10 @@
 
 [← Generalist Policies](week-09-generalist-policies.md) · **Week 10 of 11** · [Next: Frontiers →](week-11-frontiers.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="10" count=57 title="Lecture 10: Embodied Reasoning and Test-time Scaling" %}
+
 ## Outcomes
 
 - Identify tasks that benefit from extra inference-time computation.

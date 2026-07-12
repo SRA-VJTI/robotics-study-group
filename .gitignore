@@ -11,8 +11,6 @@ yarn-error.log*
 # Dependency directories
 node_modules/
 jspm_packages/
-.bundle/
-tmp/
 
 # Optional npm cache directory
 .npm
@@ -31,6 +29,10 @@ tmp/
 
 # dotenv environment variables file
 .env
+
+# Local rendering workspace
+tmp/
+.bundle/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

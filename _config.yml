@@ -1,7 +1,6 @@
 theme: jekyll-theme-cayman
 title: Robotics Study Group
-description: A theory-first path from robot-learning fundamentals to robot foundation models
+description: A build-first path from robot-learning fundamentals to robot foundation models
 show_downloads: false
 exclude:
-  - .bundle
   - tmp

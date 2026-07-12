@@ -2,6 +2,10 @@
 
 [← Reinforcement Learning I](week-04-reinforcement-learning-i.md) · **Week 5 of 11** · [Next: Generative Models →](week-06-generative-models.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="05" count=36 title="Lecture 5: Reinforcement Learning II" %}
+
 ## Outcomes
 
 - Explain the policy-gradient estimator and the purpose of a baseline.

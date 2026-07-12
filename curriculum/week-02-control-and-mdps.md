@@ -2,6 +2,10 @@
 
 [← Introduction](week-01-introduction.md) · **Week 2 of 11** · [Next: Imitation Learning →](week-03-imitation-learning.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="02" count=46 title="Lecture 2: Robot Control and MDPs" %}
+
 ## Outcomes
 
 - Connect feedback control to sequential decision-making.

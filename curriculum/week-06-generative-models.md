@@ -2,6 +2,10 @@
 
 [← Reinforcement Learning II](week-05-reinforcement-learning-ii.md) · **Week 6 of 11** · [Next: Sequence Modeling →](week-07-sequence-modeling.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="06" count=39 title="Lecture 6: Generative Models" %}
+
 ## Outcomes
 
 - Explain why robot action distributions are often multimodal.
