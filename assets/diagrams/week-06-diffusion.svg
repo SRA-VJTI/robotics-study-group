@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Diffusion policy denoising process</title>
+  <desc id="desc">A noisy action sequence is iteratively denoised while conditioned on observation history, then a short prefix is executed and replanning repeats.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#80d8cd"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">Diffusion policy: generate actions by iterative denoising</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <rect x="55" y="145" width="180" height="115" rx="18" fill="#273453"/><text x="145" y="190" fill="#9eb0d4" font-size="14">START</text><text x="145" y="222" fill="#fff" font-size="20" font-weight="600">noise aᴷ</text>
+    <rect x="285" y="145" width="180" height="115" rx="18" fill="#3c3778"/><text x="375" y="190" fill="#c7c3f5" font-size="14">DENOISE</text><text x="375" y="222" fill="#fff" font-size="20" font-weight="600">aᵏ → aᵏ⁻¹</text>
+    <rect x="515" y="145" width="180" height="115" rx="18" fill="#4e3bb7"/><text x="605" y="190" fill="#d2caff" font-size="14">CONDITION</text><text x="605" y="222" fill="#fff" font-size="20" font-weight="600">on observations</text>
+    <rect x="745" y="145" width="160" height="115" rx="18" fill="#176a67"/><text x="825" y="190" fill="#a5e8df" font-size="14">EXECUTE</text><text x="825" y="222" fill="#fff" font-size="20" font-weight="600">chunk prefix</text>
+  </g>
+  <g fill="none" stroke="#80d8cd" stroke-width="4" marker-end="url(#a)"><path d="M235 202 H275"/><path d="M465 202 H505"/><path d="M695 202 H735"/><path d="M825 270 C825 350 605 350 605 270"/></g>
+  <text x="716" y="340" text-anchor="middle" fill="#80d8cd" font-family="DM Sans, sans-serif" font-size="16" font-weight="600">observe again and replan</text>
+  <text x="145" y="315" text-anchor="middle" fill="#9aa8c0" font-family="DM Sans, sans-serif" font-size="15">multiple valid modes</text>
+</svg>

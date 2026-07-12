@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Embodied reasoning loop</title>
+  <desc id="desc">A system proposes multiple plans, grounds them in the scene and robot capabilities, verifies candidates, executes a short step, and replans.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#80d8cd"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">Spend test-time compute where verification can help</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <circle cx="150" cy="212" r="66" fill="#4e3bb7"/><text x="150" y="206" fill="#d2caff" font-size="14">PROPOSE</text><text x="150" y="232" fill="#fff" font-size="19" font-weight="700">candidate plans</text>
+    <circle cx="370" cy="212" r="66" fill="#273453"/><text x="370" y="206" fill="#9eb0d4" font-size="14">GROUND</text><text x="370" y="232" fill="#fff" font-size="19" font-weight="700">scene + robot</text>
+    <circle cx="590" cy="212" r="66" fill="#7b4b24"/><text x="590" y="206" fill="#f4c99e" font-size="14">VERIFY</text><text x="590" y="232" fill="#fff" font-size="19" font-weight="700">feasibility</text>
+    <circle cx="810" cy="212" r="66" fill="#176a67"/><text x="810" y="206" fill="#a5e8df" font-size="14">EXECUTE</text><text x="810" y="232" fill="#fff" font-size="19" font-weight="700">one step</text>
+  </g>
+  <g fill="none" stroke="#80d8cd" stroke-width="4" marker-end="url(#a)"><path d="M216 212 H294"/><path d="M436 212 H514"/><path d="M656 212 H734"/><path d="M810 288 C810 375 150 375 150 288"/></g>
+  <text x="480" y="392" text-anchor="middle" fill="#80d8cd" font-family="DM Sans, sans-serif" font-size="16" font-weight="600">observe outcomes and replan; measure success against wall-clock latency</text>
+</svg>

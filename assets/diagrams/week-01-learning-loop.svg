@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Robot learning system loop</title>
+  <desc id="desc">Observations flow into a policy, actions affect the robot and environment, outcomes are measured, and data updates the policy.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#81d8ce"/></marker>
+  </defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#f7f9ff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">The robot-learning loop</text>
+  <text x="48" y="88" fill="#96a4bd" font-family="DM Sans, sans-serif" font-size="16">Define the interface and metric before choosing the learner.</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <rect x="55" y="145" width="180" height="110" rx="18" fill="#273453" stroke="#50638c"/>
+    <text x="145" y="187" fill="#a7b9de" font-size="15">INPUT</text><text x="145" y="219" fill="#fff" font-size="22" font-weight="600">Observation</text>
+    <rect x="285" y="145" width="180" height="110" rx="18" fill="#4e3bb7" stroke="#8f7cf0"/>
+    <text x="375" y="187" fill="#d2caff" font-size="15">DECISION</text><text x="375" y="219" fill="#fff" font-size="22" font-weight="600">Policy π</text>
+    <rect x="515" y="145" width="180" height="110" rx="18" fill="#176a67" stroke="#49b7ac"/>
+    <text x="605" y="187" fill="#a5e8df" font-size="15">OUTPUT</text><text x="605" y="219" fill="#fff" font-size="22" font-weight="600">Robot action</text>
+    <rect x="745" y="145" width="160" height="110" rx="18" fill="#7b4b24" stroke="#d49352"/>
+    <text x="825" y="187" fill="#f4c99e" font-size="15">WORLD</text><text x="825" y="219" fill="#fff" font-size="22" font-weight="600">Outcome</text>
+  </g>
+  <g fill="none" stroke="#81d8ce" stroke-width="4" marker-end="url(#arrow)">
+    <path d="M235 200 H275"/><path d="M465 200 H505"/><path d="M695 200 H735"/>
+    <path d="M825 265 C825 352 145 352 145 265"/>
+  </g>
+  <text x="480" y="385" text-anchor="middle" fill="#81d8ce" font-family="DM Sans, sans-serif" font-size="16" font-weight="600">data + feedback + evaluation</text>
+</svg>

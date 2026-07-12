@@ -1,10 +1,23 @@
 # Week 06 — Generative Models for Control
 
+[← Reinforcement Learning II](week-05-reinforcement-learning-ii.md) · **Week 6 of 11** · [Next: Sequence Modeling →](week-07-sequence-modeling.md)
+
 ## Outcomes
 
 - Explain why robot action distributions are often multimodal.
 - Compare explicit, implicit, and diffusion policy objectives.
 - Evaluate generated action sequences in closed loop.
+
+![Diffusion policy denoising process](../assets/diagrams/week-06-diffusion.svg)
+
+## Policy families
+
+| Policy head | Represents modes? | Inference |
+| --- | --- | --- |
+| Gaussian regression | Weakly | One forward pass |
+| Mixture density | Yes, with fixed components | Sample or choose a component |
+| Energy-based | Yes | Optimize/sample low-energy actions |
+| Diffusion | Yes | Iterative conditional denoising |
 
 ## Core notes
 
@@ -16,6 +29,30 @@ Generating an action chunk provides temporal coherence and reduces the number of
 
 Evaluate more than imitation loss. Measure task success, inference latency, smoothness, constraint violations, robustness to observation changes, and diversity only when diversity is actually useful.
 
+## Conditional denoising objective
+
+Training samples a clean action sequence `a⁰`, noise `ε`, and a diffusion step `k`. After corrupting the actions into `aᵏ`, the network predicts the noise while conditioning on observation history `o`:
+
+> `L(θ) = E[‖ε - εθ(aᵏ, k, o)‖²]`
+
+At inference, begin with noise and apply the learned reverse steps. The final sequence is an action proposal, not a guarantee of feasibility. Receding-horizon execution lets fresh observations correct it.
+
+## Design decisions
+
+- **Prediction horizon:** how far the generated chunk extends.
+- **Execution horizon:** how much of that chunk runs before replanning.
+- **Observation horizon:** how much recent state or image history conditions the policy.
+- **Sampler:** number and type of denoising steps, which controls latency.
+- **Action representation:** joint targets, velocities, deltas, poses, or normalized commands.
+
+## Failure modes
+
+- Too few sampler steps erase useful modes or produce jerky actions.
+- Too many steps miss the real-time control budget.
+- Long open-loop chunks fail after small contacts or perturbations.
+- A visually diverse policy generates unsafe or unreachable action modes.
+- Dataset imbalance causes rare tasks to disappear during denoising.
+
 ## Paper discussion
 
 Compare planning-as-denoising in [Diffuser](https://arxiv.org/abs/2205.09991) with action selection in [Implicit Behavioral Cloning](https://arxiv.org/abs/2109.00137).
@@ -24,7 +61,13 @@ Compare planning-as-denoising in [Diffuser](https://arxiv.org/abs/2205.09991) wi
 
 Construct a toy two-mode action dataset. Compare mean regression with a mixture, energy-based, or diffusion model. Visualize whether generated actions cover both valid modes and whether closed-loop execution remains stable.
 
+Sweep execution horizon and sampler steps. Report both success and median inference latency on the target hardware.
+
 ## Primary material
 
 - [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture6_generative.pdf)
 - [Lecture recording](https://youtu.be/qd6Ldsuu46I)
+
+---
+
+[← Reinforcement Learning II](week-05-reinforcement-learning-ii.md) · [Next: Sequence Modeling →](week-07-sequence-modeling.md)

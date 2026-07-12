@@ -4,6 +4,17 @@
 
 Move from the mechanics of robot learning to the ability to design, implement, and evaluate a small modern system. The sequence is cumulative: later sessions reuse the same task contract, dataset format, and evaluation habits established in weeks 1–3.
 
+## What is on each lecture page
+
+- An original concept diagram designed for this study group
+- A compact method/component comparison
+- Key equations with implementation interpretation
+- Common failure modes and diagnostics
+- A measurable build milestone
+- Primary lecture, paper, recording, and homework links where available
+
+These pages are independent study companions. They do not reproduce or replace the access-controlled ETH lecture decks.
+
 ## Tracks
 
 - **Core:** read the guide, join the discussion, and complete the minimal build milestone.

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">World model planning loop</title>
+  <desc id="desc">An encoder maps observations to a latent state, learned dynamics imagine candidate futures, an objective ranks them, and the best action prefix executes before replanning.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#80d8cd"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">Plan inside the model, correct in the real world</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <rect x="50" y="145" width="165" height="110" rx="18" fill="#273453"/><text x="133" y="189" fill="#9eb0d4" font-size="14">ENCODE</text><text x="133" y="221" fill="#fff" font-size="20" font-weight="600">o(t) → z(t)</text>
+    <rect x="265" y="145" width="185" height="110" rx="18" fill="#4e3bb7"/><text x="358" y="189" fill="#d2caff" font-size="14">IMAGINE</text><text x="358" y="221" fill="#fff" font-size="19" font-weight="600">z(t+1) = f(z(t),a(t))</text>
+    <rect x="500" y="145" width="165" height="110" rx="18" fill="#7b4b24"/><text x="583" y="189" fill="#f4c99e" font-size="14">SCORE</text><text x="583" y="221" fill="#fff" font-size="20" font-weight="600">reward / goal</text>
+    <rect x="715" y="145" width="195" height="110" rx="18" fill="#176a67"/><text x="813" y="189" fill="#a5e8df" font-size="14">ACT</text><text x="813" y="221" fill="#fff" font-size="20" font-weight="600">execute prefix</text>
+  </g>
+  <g fill="none" stroke="#80d8cd" stroke-width="4" marker-end="url(#a)"><path d="M215 200 H255"/><path d="M450 200 H490"/><path d="M665 200 H705"/><path d="M813 265 C813 352 133 352 133 265"/></g>
+  <text x="473" y="385" text-anchor="middle" fill="#80d8cd" font-family="DM Sans, sans-serif" font-size="16" font-weight="600">re-encode reality to limit compounding model error</text>
+</svg>

@@ -5,6 +5,10 @@ An 11-week, build-first path from robot-learning fundamentals to modern robot fo
 > [!IMPORTANT]
 > The ETH lecture decks are access-controlled and are **not mirrored here**. Use the official slide links if you have legitimate access. This repository contains original study-group notes, discussion prompts, and implementation milestones.
 
+![Robot learning system loop](assets/diagrams/week-01-learning-loop.svg)
+
+Each lecture page is a standalone visual companion with original diagrams, key equations, implementation notes, failure modes, evaluation checks, paper prompts, and a build milestone. Start at [Week 1](curriculum/week-01-introduction.md) or jump directly to the topic you need below.
+
 ## What we will learn
 
 - Formulate control and decision-making problems as MDPs.
@@ -29,7 +33,7 @@ An 11-week, build-first path from robot-learning fundamentals to modern robot fo
 | 10 | Embodied Reasoning and Test-time Scaling | [Notes](curriculum/week-10-embodied-reasoning.md) | [Slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture10_reasoning.pdf) · [Recording](https://youtu.be/CxhrjQuGEuE) | Add candidate generation and verification |
 | 11 | Frontiers and Open Problems | [Notes](curriculum/week-11-frontiers.md) | [Slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture11_frontiers.pdf) · [Recording](https://youtu.be/eL4lcy1KNzE) | Present a reproducible capstone proposal |
 
-The full reading list and recommended session format live in the [curriculum guide](curriculum/README.md).
+The full reading list, track structure, and recommended session format live in the [curriculum guide](curriculum/README.md).
 
 ## How each session runs
 

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Markov decision process interaction</title>
+  <desc id="desc">An agent observes state, selects an action, and the environment returns a reward and next state.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#79d6cb"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">Control becomes sequential decision-making</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <rect x="95" y="140" width="265" height="145" rx="24" fill="#4e3bb7" stroke="#8f7cf0"/>
+    <text x="228" y="190" fill="#d2caff" font-size="16">AGENT</text><text x="228" y="230" fill="#fff" font-size="26" font-weight="700">policy π(a | s)</text>
+    <rect x="600" y="140" width="265" height="145" rx="24" fill="#176a67" stroke="#49b7ac"/>
+    <text x="733" y="190" fill="#a5e8df" font-size="16">ENVIRONMENT</text><text x="733" y="230" fill="#fff" font-size="25" font-weight="700">P, R</text>
+  </g>
+  <g fill="none" stroke="#79d6cb" stroke-width="4" marker-end="url(#a)">
+    <path d="M360 180 C445 118 520 118 590 180"/>
+    <path d="M600 255 C520 320 440 320 370 255"/>
+  </g>
+  <text x="480" y="128" text-anchor="middle" fill="#fff" font-family="DM Sans, sans-serif" font-size="18" font-weight="600">action a(t)</text>
+  <text x="480" y="330" text-anchor="middle" fill="#fff" font-family="DM Sans, sans-serif" font-size="18" font-weight="600">next state s(t+1) + reward r(t)</text>
+  <text x="480" y="382" text-anchor="middle" fill="#99a7c0" font-family="DM Sans, sans-serif" font-size="16">Markov test: does the chosen state contain everything needed to predict the future?</text>
+</svg>

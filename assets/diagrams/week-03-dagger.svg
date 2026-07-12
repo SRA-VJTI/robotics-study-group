@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Behavior cloning and DAgger comparison</title>
+  <desc id="desc">Behavior cloning trains only on expert states while DAgger repeatedly visits learner states, requests expert labels, and aggregates them.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#80d8cd"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">Fixing covariate shift with DAgger</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <text x="228" y="112" fill="#f0b56f" font-size="18" font-weight="700">BEHAVIOR CLONING</text>
+    <circle cx="110" cy="205" r="44" fill="#7b4b24"/><text x="110" y="211" fill="#fff" font-size="17">expert</text>
+    <circle cx="228" cy="205" r="44" fill="#4e3bb7"/><text x="228" y="211" fill="#fff" font-size="17">dataset</text>
+    <circle cx="346" cy="205" r="44" fill="#273453"/><text x="346" y="211" fill="#fff" font-size="17">policy</text>
+    <text x="228" y="292" fill="#9aa8c0" font-size="15">Learner never trains on its own mistakes</text>
+    <text x="718" y="112" fill="#80d8cd" font-size="18" font-weight="700">DAGGER</text>
+    <circle cx="600" cy="205" r="44" fill="#273453"/><text x="600" y="211" fill="#fff" font-size="17">rollout</text>
+    <circle cx="718" cy="205" r="44" fill="#7b4b24"/><text x="718" y="211" fill="#fff" font-size="17">label</text>
+    <circle cx="836" cy="205" r="44" fill="#176a67"/><text x="836" y="211" fill="#fff" font-size="17">retrain</text>
+    <text x="718" y="292" fill="#9aa8c0" font-size="15">Dataset grows around learner-visited states</text>
+  </g>
+  <g fill="none" stroke="#80d8cd" stroke-width="4" marker-end="url(#a)">
+    <path d="M154 205 H174"/><path d="M272 205 H292"/><path d="M644 205 H664"/><path d="M762 205 H782"/>
+    <path d="M836 250 C836 350 600 350 600 260"/>
+  </g>
+</svg>

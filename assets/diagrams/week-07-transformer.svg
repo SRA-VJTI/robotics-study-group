@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Causal robot transformer token flow</title>
+  <desc id="desc">Language, image, proprioception, and past action tokens enter a causally masked transformer that predicts the next action chunk.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#80d8cd"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">A robot trajectory becomes a causal token sequence</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle" font-weight="600">
+    <rect x="55" y="145" width="130" height="80" rx="15" fill="#7b4b24"/><text x="120" y="193" fill="#fff" font-size="17">language</text>
+    <rect x="205" y="145" width="130" height="80" rx="15" fill="#273453"/><text x="270" y="193" fill="#fff" font-size="17">image</text>
+    <rect x="355" y="145" width="130" height="80" rx="15" fill="#176a67"/><text x="420" y="193" fill="#fff" font-size="17">proprio</text>
+    <rect x="505" y="145" width="130" height="80" rx="15" fill="#3c3778"/><text x="570" y="193" fill="#fff" font-size="17">past action</text>
+    <rect x="685" y="125" width="220" height="120" rx="20" fill="#4e3bb7" stroke="#8f7cf0"/><text x="795" y="175" fill="#d2caff" font-size="14">CAUSAL TRANSFORMER</text><text x="795" y="211" fill="#fff" font-size="20">next action chunk</text>
+  </g>
+  <g fill="none" stroke="#80d8cd" stroke-width="4" marker-end="url(#a)"><path d="M185 185 H195"/><path d="M335 185 H345"/><path d="M485 185 H495"/><path d="M635 185 H675"/></g>
+  <path d="M120 290 H795" stroke="#53617c" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="458" y="326" text-anchor="middle" fill="#9aa8c0" font-family="DM Sans, sans-serif" font-size="16">mask future tokens · preserve modality identity · record the context window</text>
+</svg>

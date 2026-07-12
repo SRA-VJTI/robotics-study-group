@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Vision language action policy architecture</title>
+  <desc id="desc">Visual, language, and proprioceptive inputs enter a shared backbone and an embodiment adapter converts its representation into robot-specific action chunks.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#80d8cd"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">Generalist policy = shared semantics + grounded embodiment</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <rect x="55" y="115" width="165" height="70" rx="15" fill="#273453"/><text x="138" y="158" fill="#fff" font-size="18" font-weight="600">vision</text>
+    <rect x="55" y="205" width="165" height="70" rx="15" fill="#7b4b24"/><text x="138" y="248" fill="#fff" font-size="18" font-weight="600">language</text>
+    <rect x="55" y="295" width="165" height="70" rx="15" fill="#176a67"/><text x="138" y="338" fill="#fff" font-size="18" font-weight="600">proprioception</text>
+    <rect x="330" y="150" width="260" height="165" rx="24" fill="#4e3bb7" stroke="#8f7cf0"/><text x="460" y="210" fill="#d2caff" font-size="15">SHARED BACKBONE</text><text x="460" y="252" fill="#fff" font-size="24" font-weight="700">task representation</text>
+    <rect x="700" y="150" width="205" height="165" rx="24" fill="#176a67" stroke="#49b7ac"/><text x="803" y="210" fill="#a5e8df" font-size="15">EMBODIMENT HEAD</text><text x="803" y="252" fill="#fff" font-size="23" font-weight="700">action chunk</text>
+  </g>
+  <g fill="none" stroke="#80d8cd" stroke-width="4" marker-end="url(#a)"><path d="M220 150 C275 150 285 195 320 205"/><path d="M220 240 H320"/><path d="M220 330 C275 330 285 270 320 260"/><path d="M590 232 H690"/></g>
+  <text x="610" y="370" text-anchor="middle" fill="#9aa8c0" font-family="DM Sans, sans-serif" font-size="15">test transfer by holding out tasks, objects, scenes, and embodiments separately</text>
+</svg>

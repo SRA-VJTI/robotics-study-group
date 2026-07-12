@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Actor critic learning loop</title>
+  <desc id="desc">The actor selects actions, the critic estimates value, and advantage updates the actor while temporal difference error updates the critic.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#80d8cd"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">Actor–critic: act with a policy, learn with a value signal</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <rect x="80" y="135" width="230" height="130" rx="22" fill="#4e3bb7" stroke="#8f7cf0"/><text x="195" y="183" fill="#d2caff" font-size="15">ACTOR</text><text x="195" y="218" fill="#fff" font-size="24" font-weight="700">πθ(a | s)</text>
+    <rect x="365" y="135" width="230" height="130" rx="22" fill="#176a67" stroke="#49b7ac"/><text x="480" y="183" fill="#a5e8df" font-size="15">ENVIRONMENT</text><text x="480" y="218" fill="#fff" font-size="24" font-weight="700">s′, r</text>
+    <rect x="650" y="135" width="230" height="130" rx="22" fill="#7b4b24" stroke="#d49352"/><text x="765" y="183" fill="#f4c99e" font-size="15">CRITIC</text><text x="765" y="218" fill="#fff" font-size="24" font-weight="700">Vφ(s)</text>
+  </g>
+  <g fill="none" stroke="#80d8cd" stroke-width="4" marker-end="url(#a)">
+    <path d="M310 185 H355"/><path d="M595 215 H640"/><path d="M765 275 C730 360 250 360 195 275"/>
+  </g>
+  <text x="335" y="169" fill="#fff" font-family="DM Sans, sans-serif" font-size="15">action</text>
+  <text x="620" y="199" fill="#fff" font-family="DM Sans, sans-serif" font-size="15">transition</text>
+  <text x="480" y="390" text-anchor="middle" fill="#80d8cd" font-family="DM Sans, sans-serif" font-size="16" font-weight="600">advantage: was this action better than expected?</text>
+</svg>

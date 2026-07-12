@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Robot learning research map</title>
+  <desc id="desc">A research question sits between data, objectives, models, embodiment, evaluation, and safety, which must all be specified for a reproducible project.</desc>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">Turn a broad idea into a falsifiable robot experiment</text>
+  <g stroke="#53617c" stroke-width="3"><path d="M480 210 L170 130"/><path d="M480 210 L170 300"/><path d="M480 210 L370 340"/><path d="M480 210 L790 130"/><path d="M480 210 L790 300"/><path d="M480 210 L590 340"/></g>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <circle cx="480" cy="210" r="82" fill="#4e3bb7" stroke="#8f7cf0"/><text x="480" y="202" fill="#d2caff" font-size="14">HYPOTHESIS</text><text x="480" y="232" fill="#fff" font-size="22" font-weight="700">one intervention</text>
+    <rect x="90" y="92" width="160" height="72" rx="15" fill="#273453"/><text x="170" y="136" fill="#fff" font-size="18" font-weight="600">data</text>
+    <rect x="90" y="264" width="160" height="72" rx="15" fill="#176a67"/><text x="170" y="308" fill="#fff" font-size="18" font-weight="600">embodiment</text>
+    <rect x="290" y="314" width="160" height="72" rx="15" fill="#7b4b24"/><text x="370" y="358" fill="#fff" font-size="18" font-weight="600">safety</text>
+    <rect x="710" y="92" width="160" height="72" rx="15" fill="#273453"/><text x="790" y="136" fill="#fff" font-size="18" font-weight="600">model</text>
+    <rect x="710" y="264" width="160" height="72" rx="15" fill="#176a67"/><text x="790" y="308" fill="#fff" font-size="18" font-weight="600">evaluation</text>
+    <rect x="510" y="314" width="160" height="72" rx="15" fill="#7b4b24"/><text x="590" y="358" fill="#fff" font-size="18" font-weight="600">compute</text>
+  </g>
+</svg>

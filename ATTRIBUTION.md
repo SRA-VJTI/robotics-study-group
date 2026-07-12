@@ -8,7 +8,7 @@ The ETH course page, lecture recordings, slide decks, papers, and official homew
 
 ## What is included here
 
-The study guides, discussion prompts, session plans, and build milestones in this repository are original SRA VJTI study-group material. They summarize general technical ideas and point readers to primary sources.
+The study guides, SVG concept diagrams, discussion prompts, session plans, and build milestones in this repository are original SRA VJTI study-group material. They summarize general technical ideas and point readers to primary sources.
 
 ## What is intentionally not included
 

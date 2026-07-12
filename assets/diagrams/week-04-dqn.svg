@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Deep Q learning data flow</title>
+  <desc id="desc">The acting network gathers transitions into replay, batches train the online Q network, and a delayed target network creates Bellman targets.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#80d8cd"/></marker></defs>
+  <rect width="960" height="420" rx="28" fill="#0b1220"/>
+  <text x="48" y="58" fill="#fff" font-family="DM Sans, sans-serif" font-size="28" font-weight="700">DQN stabilizes a moving Bellman target</text>
+  <g font-family="DM Sans, sans-serif" text-anchor="middle">
+    <rect x="60" y="148" width="175" height="105" rx="18" fill="#273453" stroke="#50638c"/><text x="148" y="190" fill="#9eb0d4" font-size="14">INTERACT</text><text x="148" y="220" fill="#fff" font-size="21" font-weight="600">Environment</text>
+    <rect x="285" y="148" width="175" height="105" rx="18" fill="#176a67" stroke="#49b7ac"/><text x="373" y="190" fill="#a5e8df" font-size="14">STORE</text><text x="373" y="220" fill="#fff" font-size="21" font-weight="600">Replay buffer</text>
+    <rect x="510" y="105" width="175" height="105" rx="18" fill="#4e3bb7" stroke="#8f7cf0"/><text x="598" y="147" fill="#d2caff" font-size="14">OPTIMIZE</text><text x="598" y="177" fill="#fff" font-size="21" font-weight="600">Online Qθ</text>
+    <rect x="735" y="238" width="175" height="105" rx="18" fill="#7b4b24" stroke="#d49352"/><text x="823" y="280" fill="#f4c99e" font-size="14">BOOTSTRAP</text><text x="823" y="310" fill="#fff" font-size="21" font-weight="600">Target Qθ⁻</text>
+  </g>
+  <g fill="none" stroke="#80d8cd" stroke-width="4" marker-end="url(#a)">
+    <path d="M235 200 H275"/><path d="M460 185 C480 160 485 158 500 158"/><path d="M685 175 C770 178 823 194 823 228"/>
+    <path d="M735 300 C620 355 440 355 373 263"/>
+    <path d="M510 132 C390 78 180 82 148 138"/>
+  </g>
+  <text x="480" y="385" text-anchor="middle" fill="#9aa8c0" font-family="DM Sans, sans-serif" font-size="15">Replay breaks correlation · target lag slows feedback · evaluation removes exploration noise</text>
+</svg>
