@@ -2,10 +2,6 @@
 
 [← Curriculum](README.md) · **Week 1 of 11** · [Next: Control and MDPs →](week-02-control-and-mdps.md)
 
-## Optional slide gallery
-
-{% include slide-deck.html week="01" count=44 title="Lecture 1: Introduction to Robot Learning" transcript="/transcripts/week-01-introduction.html" %}
-
 ## Outcomes
 
 - Distinguish model-based control, imitation learning, reinforcement learning, and generalist-policy training.

@@ -4,18 +4,16 @@
 
 Move from the mechanics of robot learning to the ability to design, implement, and evaluate a small modern system. The sequence is cumulative: later sessions reuse the same task contract, dataset format, and evaluation habits established in weeks 1–3.
 
-## What is on each lecture page
+## What is on each theory page
 
-- A searchable Markdown transcript generated with OCR as the default view
-- Every page of the complete source lecture deck in an optional slide gallery
 - An original concept diagram designed for this study group
 - A compact method/component comparison
 - Key equations with implementation interpretation
 - Common failure modes and diagnostics
 - A measurable build milestone
-- Primary paper and project references where useful
+- Suggested papers for deeper discussion
 
-The locally rendered decks retain the copyright and reuse terms of the source material. The additional notes and diagrams are independent study-group material.
+These pages are self-contained theory guides written for the study group.
 
 ## Tracks
 
@@ -48,8 +46,6 @@ Use one lightweight task for several weeks so algorithm differences remain inter
 | 9 | [Language Conditioned Imitation Learning](https://arxiv.org/abs/2005.07648); [Gato](https://arxiv.org/abs/2205.06175); [π*0.6](https://arxiv.org/abs/2511.14759) |
 | 10 | [In-Context Imitation Learning](https://arxiv.org/abs/2408.15980); [Voyager](https://arxiv.org/abs/2305.16291); [Training Strategies for Efficient Embodied Reasoning](https://arxiv.org/abs/2505.08243) |
 | 11 | [A Path Towards Autonomous Machine Intelligence](https://openreview.net/forum?id=BZ5a1r-kVsf); [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html); [Intelligence without Representation](https://people.csail.mit.edu/brooks/papers/representation.pdf) |
-
-The [official course page](https://cvg.ethz.ch/lectures/Robot-Learning/) is the source of truth for its schedule and links.
 
 ## Capstone checkpoint
 

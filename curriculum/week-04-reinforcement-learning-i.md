@@ -2,10 +2,6 @@
 
 [← Imitation Learning](week-03-imitation-learning.md) · **Week 4 of 11** · [Next: Reinforcement Learning II →](week-05-reinforcement-learning-ii.md)
 
-## Optional slide gallery
-
-{% include slide-deck.html week="04" count=45 title="Lecture 4: Reinforcement Learning I" transcript="/transcripts/week-04-reinforcement-learning-i.html" %}
-
 ## Outcomes
 
 - Derive the role of bootstrapping in value-based RL.

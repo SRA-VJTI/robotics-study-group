@@ -2,10 +2,6 @@
 
 [← Generative Models](week-06-generative-models.md) · **Week 7 of 11** · [Next: World Models →](week-08-world-models.md)
 
-## Optional slide gallery
-
-{% include slide-deck.html week="07" count=39 title="Lecture 7: Sequence Modeling and Transformers" transcript="/transcripts/week-07-sequence-modeling.html" %}
-
 ## Outcomes
 
 - Represent trajectories as sequences for causal prediction.
