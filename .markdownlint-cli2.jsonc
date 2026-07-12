@@ -4,6 +4,7 @@
   },
   "ignores": [
     "Tutorials/**",
-    "week1/**"
+    "week1/**",
+    "tmp/**"
   ]
 }

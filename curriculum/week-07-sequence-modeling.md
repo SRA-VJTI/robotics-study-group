@@ -2,6 +2,10 @@
 
 [← Generative Models](week-06-generative-models.md) · **Week 7 of 11** · [Next: World Models →](week-08-world-models.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="07" count=39 title="Lecture 7: Sequence Modeling and Transformers" %}
+
 ## Outcomes
 
 - Represent trajectories as sequences for causal prediction.
@@ -59,11 +63,6 @@ Contrast return-conditioned control in [Decision Transformer](https://arxiv.org/
 Train a small causal transformer to predict action sequences from state history. Compare single-step actions with short chunks at equal parameter count. Measure success, latency, and recovery after a mid-episode perturbation.
 
 Visualize the attention mask itself and add a unit test that changing a future token cannot change an earlier prediction.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture7_sequence_modeling.pdf)
-- [Lecture recording](https://youtu.be/imSTfMJjp7M)
 
 ---
 

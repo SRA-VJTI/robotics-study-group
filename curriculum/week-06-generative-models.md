@@ -2,6 +2,10 @@
 
 [← Reinforcement Learning II](week-05-reinforcement-learning-ii.md) · **Week 6 of 11** · [Next: Sequence Modeling →](week-07-sequence-modeling.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="06" count=39 title="Lecture 6: Generative Models" %}
+
 ## Outcomes
 
 - Explain why robot action distributions are often multimodal.
@@ -62,11 +66,6 @@ Compare planning-as-denoising in [Diffuser](https://arxiv.org/abs/2205.09991) wi
 Construct a toy two-mode action dataset. Compare mean regression with a mixture, energy-based, or diffusion model. Visualize whether generated actions cover both valid modes and whether closed-loop execution remains stable.
 
 Sweep execution horizon and sampler steps. Report both success and median inference latency on the target hardware.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture6_generative.pdf)
-- [Lecture recording](https://youtu.be/qd6Ldsuu46I)
 
 ---
 

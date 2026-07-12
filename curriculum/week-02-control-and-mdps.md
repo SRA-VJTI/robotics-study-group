@@ -2,6 +2,10 @@
 
 [← Introduction](week-01-introduction.md) · **Week 2 of 11** · [Next: Imitation Learning →](week-03-imitation-learning.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="02" count=46 title="Lecture 2: Robot Control and MDPs" %}
+
 ## Outcomes
 
 - Connect feedback control to sequential decision-making.
@@ -63,12 +67,6 @@ Use [random search for RL](https://arxiv.org/abs/1803.07055) and [Deep RL Doesn'
 Implement a PID controller for one continuous task and value iteration for one tiny discrete MDP. Plot tracking error for the controller and verify the Bellman residual for the MDP solution.
 
 Report rise time, steady-state error, overshoot, return, success rate, and the final Bellman residual. Perturb one physical parameter to test robustness.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture2_control_mdp.pdf)
-- [Lecture recording](https://www.youtube.com/watch?v=5-Bb84eTTqQ)
-- [Public control/MDP homework](https://github.com/mees-robot-learning-course/ethz-course-2026/tree/main/hw2_robot_control_mdps)
 
 ---
 

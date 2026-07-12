@@ -2,6 +2,10 @@
 
 [← Embodied Reasoning](week-10-embodied-reasoning.md) · **Week 11 of 11** · [Curriculum index →](README.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="11" count=50 title="Lecture 11: Frontiers and Open Problems" %}
+
 ## Outcomes
 
 - Turn a broad robotics idea into a falsifiable research question.
@@ -73,11 +77,6 @@ Triangulate [A Path Towards Autonomous Machine Intelligence](https://openreview.
 Present a one-page proposal: question, hypothesis, baseline, intervention, task/data, primary metric, seed/compute budget, two ablations, safety constraints, and stop condition. Another team must be able to reproduce the plan without asking you questions.
 
 End the session with a pre-mortem: list the three most likely ways the project will produce an uninterpretable result, then change the protocol to prevent them.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture11_frontiers.pdf)
-- [Lecture recording](https://youtu.be/eL4lcy1KNzE)
 
 ---
 

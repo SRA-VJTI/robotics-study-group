@@ -103,6 +103,49 @@ body {
   padding: 0.25rem 1.1rem;
 }
 
+.deck-note {
+  background: #effaf7;
+  border: 1px solid #bce8de;
+  border-radius: 0.8rem;
+  color: #205a53;
+  margin: 1.25rem 0;
+  padding: 0.9rem 1.1rem;
+}
+
+.source-deck {
+  margin: 1.5rem 0 3rem;
+}
+
+.source-slide {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  box-shadow: 0 12px 35px rgba(18, 27, 53, 0.12);
+  content-visibility: auto;
+  contain-intrinsic-size: 900px 507px;
+  margin: 0 0 2rem;
+  overflow: hidden;
+}
+
+.source-slide a {
+  display: block;
+}
+
+.source-slide img {
+  display: block;
+  height: auto;
+  margin: 0;
+  width: 100%;
+}
+
+.source-slide figcaption {
+  background: #f5f8fc;
+  color: var(--muted);
+  font-size: 0.88rem;
+  padding: 0.55rem 0.8rem;
+  text-align: right;
+}
+
 @media (max-width: 48rem) {
   .main-content table {
     display: block;
@@ -112,5 +155,20 @@ body {
   .lecture-nav {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media print {
+  .page-header,
+  .site-footer,
+  .deck-note {
+    display: none;
+  }
+
+  .source-slide {
+    border: 0;
+    break-after: page;
+    box-shadow: none;
+    margin: 0;
   }
 }

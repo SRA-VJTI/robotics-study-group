@@ -2,6 +2,10 @@
 
 [← Generalist Policies](week-09-generalist-policies.md) · **Week 10 of 11** · [Next: Frontiers →](week-11-frontiers.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="10" count=57 title="Lecture 10: Embodied Reasoning and Test-time Scaling" %}
+
 ## Outcomes
 
 - Identify tasks that benefit from extra inference-time computation.
@@ -66,11 +70,6 @@ Compare embodied learning from examples in [In-Context Imitation Learning](https
 Add candidate generation and a simple verifier to a multi-step task. Sweep the number of candidates and plot success versus latency. Include at least one adversarial case where the verifier selects a bad plan.
 
 Report verifier accuracy separately from end-to-end task success. Include the cost of perception, candidate generation, verification, and control.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture10_reasoning.pdf)
-- [Lecture recording](https://youtu.be/CxhrjQuGEuE)
 
 ---
 

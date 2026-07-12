@@ -2,6 +2,10 @@
 
 [← Imitation Learning](week-03-imitation-learning.md) · **Week 4 of 11** · [Next: Reinforcement Learning II →](week-05-reinforcement-learning-ii.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="04" count=45 title="Lecture 4: Reinforcement Learning I" %}
+
 ## Outcomes
 
 - Derive the role of bootstrapping in value-based RL.
@@ -64,12 +68,6 @@ Compare gradient-free [evolution strategies](https://arxiv.org/abs/1703.03864) w
 Solve a tabular task with value iteration, then train DQN on a small discrete-control task. Add an ablation removing either replay or the target network and explain the resulting curve.
 
 Use the same evaluation seeds for every checkpoint, but keep them out of training. Report sample efficiency and wall-clock efficiency separately.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture4_rl_I.pdf)
-- [Lecture recording](https://youtu.be/90raNpc11tQ)
-- [Public reinforcement-learning homework](https://github.com/mees-robot-learning-course/ethz-course-2026/tree/main/hw4_reinforcement_learning)
 
 ---
 

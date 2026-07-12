@@ -2,6 +2,10 @@
 
 [← World Models](week-08-world-models.md) · **Week 9 of 11** · [Next: Embodied Reasoning →](week-10-embodied-reasoning.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="09" count=59 title="Lecture 9: Generalist Robot Policies" %}
+
 ## Outcomes
 
 - Describe the data and interfaces needed by a multi-task robot policy.
@@ -65,11 +69,6 @@ Use [language-conditioned imitation](https://arxiv.org/abs/2005.07648) and [Gato
 Design a common schema for two tasks or embodiments. Train a shared conditioned policy and two specialists. Report per-task success, parameter count, data volume, and any negative transfer.
 
 Add one held-out axis and one deliberately conflicting task pair. Inspect whether shared training improves transfer or causes interference.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture9_generalist_policies.pdf)
-- [Lecture recording](https://youtu.be/dtofzDY9zuo)
 
 ---
 

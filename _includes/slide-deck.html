@@ -1,0 +1,21 @@
+<div class="deck-note">
+  <strong>Complete deck:</strong> {{ include.count }} slides rendered locally.
+  Select any slide to open the full-resolution image.
+</div>
+<section class="source-deck" aria-label="{{ include.title }} complete lecture slides">
+  {% for slide in (1..include.count) %}
+    {% capture slide_path %}/assets/lectures/week-{{ include.week }}/slide-{{ slide }}.jpg{% endcapture %}
+    <figure class="source-slide" id="slide-{{ slide }}">
+      <a href="{{ slide_path | relative_url }}">
+        <img
+          src="{{ slide_path | relative_url }}"
+          alt="{{ include.title }} - slide {{ slide }} of {{ include.count }}"
+          width="1600"
+          height="901"
+          decoding="async"
+          {% if slide > 2 %}loading="lazy"{% else %}loading="eager" fetchpriority="high"{% endif %}>
+      </a>
+      <figcaption>Slide {{ slide }} of {{ include.count }}</figcaption>
+    </figure>
+  {% endfor %}
+</section>

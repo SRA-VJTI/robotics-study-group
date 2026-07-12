@@ -2,6 +2,10 @@
 
 [← Control and MDPs](week-02-control-and-mdps.md) · **Week 3 of 11** · [Next: Reinforcement Learning I →](week-04-reinforcement-learning-i.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="03" count=45 title="Lecture 3: Imitation Learning" %}
+
 ## Outcomes
 
 - Explain why supervised accuracy is insufficient for closed-loop imitation.
@@ -68,12 +72,6 @@ Contrast the diagnosis in [Causal Confusion in Imitation Learning](https://arxiv
 Collect or synthesize demonstrations, train behavior cloning, then introduce initial-state noise. Add either DAgger or recovery data and compare closed-loop success—not just validation loss—over three seeds.
 
 Plot performance against perturbation magnitude and dataset size. Include the expert, a random policy, and behavior cloning before claiming the interactive method helps.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture3_imitation.pdf)
-- [Lecture recording](https://youtu.be/Ef4R5s1LqoQ)
-- [Public imitation-learning homework](https://github.com/mees-robot-learning-course/ethz-course-2026/tree/main/hw3_imitation_learning)
 
 ---
 

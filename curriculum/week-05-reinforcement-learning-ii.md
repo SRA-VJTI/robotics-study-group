@@ -2,6 +2,10 @@
 
 [← Reinforcement Learning I](week-04-reinforcement-learning-i.md) · **Week 5 of 11** · [Next: Generative Models →](week-06-generative-models.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="05" count=36 title="Lecture 5: Reinforcement Learning II" %}
+
 ## Outcomes
 
 - Explain the policy-gradient estimator and the purpose of a baseline.
@@ -58,12 +62,6 @@ SAC optimizes return plus entropy. Twin critics reduce positive bias, replay imp
 Train PPO or SAC on the same task contract used earlier. Compare it with the non-learning controller and behavior-cloning policy using equal evaluation episodes. Report environment steps and wall-clock time.
 
 Ablate one stabilization choice: advantage normalization, entropy bonus, replay ratio, or target-network update rate. Explain the mechanism before interpreting the curve.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture5_rl_II.pdf)
-- [Lecture recording](https://youtu.be/AdTGz8YnnlE)
-- [SRA VPG tutorial](../Tutorials/VPG_tutorial.md)
 
 ---
 

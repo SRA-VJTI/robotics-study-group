@@ -6,14 +6,15 @@ Move from the mechanics of robot learning to the ability to design, implement, a
 
 ## What is on each lecture page
 
+- Every page of the complete source lecture deck, rendered locally
 - An original concept diagram designed for this study group
 - A compact method/component comparison
 - Key equations with implementation interpretation
 - Common failure modes and diagnostics
 - A measurable build milestone
-- Primary lecture, paper, recording, and homework links where available
+- Primary paper and project references where useful
 
-These pages are independent study companions. They do not reproduce or replace the access-controlled ETH lecture decks.
+The locally rendered decks retain the copyright and reuse terms of the source material. The additional notes and diagrams are independent study-group material.
 
 ## Tracks
 

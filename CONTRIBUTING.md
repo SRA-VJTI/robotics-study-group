@@ -20,7 +20,7 @@ An experiment should include:
 - expected runtime and hardware;
 - known failure modes.
 
-Keep generated checkpoints, datasets, videos, and downloaded course material out of Git. Link to an external artifact store when needed.
+Keep generated checkpoints, datasets, videos, credentials, and course material without recorded redistribution permission out of Git. Link to an external artifact store when needed.
 
 ## Pull requests
 

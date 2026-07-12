@@ -2,6 +2,10 @@
 
 [← Sequence Modeling](week-07-sequence-modeling.md) · **Week 8 of 11** · [Next: Generalist Policies →](week-09-generalist-policies.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="08" count=55 title="Lecture 8: World Models" %}
+
 ## Outcomes
 
 - Separate representation, dynamics, reward, and policy components.
@@ -66,11 +70,6 @@ Ask whether [text-guided video policies](https://arxiv.org/abs/2302.00111) and [
 Learn a one-step dynamics model in a compact state space, roll it out for increasing horizons, and plot prediction error. Use it in a short-horizon planner and compare task return with random shooting in the real simulator.
 
 Ablate replan frequency and uncertainty penalty. The useful model is the one that improves real decisions, not necessarily the one with the sharpest reconstruction.
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture8_world_models.pdf)
-- [Lecture recording](https://youtu.be/cTTmUZlOF2s)
 
 ---
 

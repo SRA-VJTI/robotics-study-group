@@ -2,6 +2,10 @@
 
 [← Curriculum](README.md) · **Week 1 of 11** · [Next: Control and MDPs →](week-02-control-and-mdps.md)
 
+## Complete lecture deck
+
+{% include slide-deck.html week="01" count=44 title="Lecture 1: Introduction to Robot Learning" %}
+
 ## Outcomes
 
 - Distinguish model-based control, imitation learning, reinforcement learning, and generalist-policy training.
@@ -68,12 +72,6 @@ Create a one-page task card for a simulated reach, push, or pick task. Include a
 - [ ] At least three seeds where practical
 - [ ] In-distribution and shifted evaluation sets
 - [ ] Success, safety, latency, and data/compute cost reported separately
-
-## Primary material
-
-- [Official slides](https://cvg.ethz.ch/lectures/Robot-Learning/lectures/lecture1_intro.pdf)
-- [Lecture recording](https://www.youtube.com/watch?v=X0k14u6pSxw)
-- [Official course exercises](https://github.com/mees-robot-learning-course/ethz-course-2026)
 
 ---
 
