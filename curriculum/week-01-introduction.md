@@ -2,9 +2,9 @@
 
 [← Curriculum](README.md) · **Week 1 of 11** · [Next: Control and MDPs →](week-02-control-and-mdps.md)
 
-## Complete lecture deck
+## Optional slide gallery
 
-{% include slide-deck.html week="01" count=44 title="Lecture 1: Introduction to Robot Learning" %}
+{% include slide-deck.html week="01" count=44 title="Lecture 1: Introduction to Robot Learning" transcript="/transcripts/week-01-introduction.html" %}
 
 ## Outcomes
 

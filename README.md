@@ -7,7 +7,7 @@ An 11-week, build-first path from robot-learning fundamentals to modern robot fo
 
 ![Robot learning system loop](assets/diagrams/week-01-learning-loop.svg)
 
-Each lecture page contains the complete source deck plus original study-group diagrams, key equations, implementation notes, failure modes, evaluation checks, paper prompts, and a build milestone. Start at [Week 1](curriculum/week-01-introduction.md) or jump directly to the topic you need below.
+Each week opens to a searchable OCR Markdown transcript by default. A complete slide gallery remains available as an optional alternate view, alongside original study-group diagrams, implementation notes, evaluation checks, and build milestones. Start at [Week 1](transcripts/week-01-introduction.md) or jump directly to the topic you need below.
 
 ## What we will learn
 
@@ -19,19 +19,19 @@ Each lecture page contains the complete source deck plus original study-group di
 
 ## Weekly roadmap
 
-| Week | Topic | Complete lecture | Slides | Build milestone |
-| ---: | --- | --- | ---: | --- |
-| 1 | Introduction to Robot Learning | [Open lecture](curriculum/week-01-introduction.md) | 44 | Define a robot task and evaluation contract |
-| 2 | Robot Control and MDPs | [Open lecture](curriculum/week-02-control-and-mdps.md) | 46 | PID/control baseline plus a tiny MDP solver |
-| 3 | Imitation Learning | [Open lecture](curriculum/week-03-imitation-learning.md) | 45 | Behavior cloning and DAgger comparison |
-| 4 | Reinforcement Learning I | [Open lecture](curriculum/week-04-reinforcement-learning-i.md) | 45 | Value iteration and DQN baseline |
-| 5 | Reinforcement Learning II | [Open lecture](curriculum/week-05-reinforcement-learning-ii.md) | 36 | PPO or SAC with a clean evaluation loop |
-| 6 | Generative Models for Control | [Open lecture](curriculum/week-06-generative-models.md) | 39 | Multimodal action-policy prototype |
-| 7 | Sequence Models and Transformers | [Open lecture](curriculum/week-07-sequence-modeling.md) | 39 | Train an action-sequence transformer |
-| 8 | World Models | [Open lecture](curriculum/week-08-world-models.md) | 55 | Learn and test a latent dynamics model |
-| 9 | Generalist Robot Policies | [Open lecture](curriculum/week-09-generalist-policies.md) | 59 | Design a multi-task policy/data interface |
-| 10 | Embodied Reasoning and Test-time Scaling | [Open lecture](curriculum/week-10-embodied-reasoning.md) | 57 | Add candidate generation and verification |
-| 11 | Frontiers and Open Problems | [Open lecture](curriculum/week-11-frontiers.md) | 50 | Present a reproducible capstone proposal |
+| Week | Topic | Default OCR Markdown | Optional slides | Slides | Build milestone |
+| ---: | --- | --- | --- | ---: | --- |
+| 1 | Introduction to Robot Learning | [Open OCR](transcripts/week-01-introduction.md) | [Slide gallery](curriculum/week-01-introduction.md) | 44 | Define a robot task and evaluation contract |
+| 2 | Robot Control and MDPs | [Open OCR](transcripts/week-02-control-and-mdps.md) | [Slide gallery](curriculum/week-02-control-and-mdps.md) | 46 | PID/control baseline plus a tiny MDP solver |
+| 3 | Imitation Learning | [Open OCR](transcripts/week-03-imitation-learning.md) | [Slide gallery](curriculum/week-03-imitation-learning.md) | 45 | Behavior cloning and DAgger comparison |
+| 4 | Reinforcement Learning I | [Open OCR](transcripts/week-04-reinforcement-learning-i.md) | [Slide gallery](curriculum/week-04-reinforcement-learning-i.md) | 45 | Value iteration and DQN baseline |
+| 5 | Reinforcement Learning II | [Open OCR](transcripts/week-05-reinforcement-learning-ii.md) | [Slide gallery](curriculum/week-05-reinforcement-learning-ii.md) | 36 | PPO or SAC with a clean evaluation loop |
+| 6 | Generative Models for Control | [Open OCR](transcripts/week-06-generative-models.md) | [Slide gallery](curriculum/week-06-generative-models.md) | 39 | Multimodal action-policy prototype |
+| 7 | Sequence Models and Transformers | [Open OCR](transcripts/week-07-sequence-modeling.md) | [Slide gallery](curriculum/week-07-sequence-modeling.md) | 39 | Train an action-sequence transformer |
+| 8 | World Models | [Open OCR](transcripts/week-08-world-models.md) | [Slide gallery](curriculum/week-08-world-models.md) | 55 | Learn and test a latent dynamics model |
+| 9 | Generalist Robot Policies | [Open OCR](transcripts/week-09-generalist-policies.md) | [Slide gallery](curriculum/week-09-generalist-policies.md) | 59 | Design a multi-task policy/data interface |
+| 10 | Embodied Reasoning and Test-time Scaling | [Open OCR](transcripts/week-10-embodied-reasoning.md) | [Slide gallery](curriculum/week-10-embodied-reasoning.md) | 57 | Add candidate generation and verification |
+| 11 | Frontiers and Open Problems | [Open OCR](transcripts/week-11-frontiers.md) | [Slide gallery](curriculum/week-11-frontiers.md) | 50 | Present a reproducible capstone proposal |
 
 The full reading list, track structure, and recommended session format live in the [curriculum guide](curriculum/README.md).
 

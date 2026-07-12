@@ -2,9 +2,9 @@
 
 [← Generalist Policies](week-09-generalist-policies.md) · **Week 10 of 11** · [Next: Frontiers →](week-11-frontiers.md)
 
-## Complete lecture deck
+## Optional slide gallery
 
-{% include slide-deck.html week="10" count=57 title="Lecture 10: Embodied Reasoning and Test-time Scaling" %}
+{% include slide-deck.html week="10" count=57 title="Lecture 10: Embodied Reasoning and Test-time Scaling" transcript="/transcripts/week-10-embodied-reasoning.html" %}
 
 ## Outcomes
 

@@ -2,9 +2,9 @@
 
 [← Embodied Reasoning](week-10-embodied-reasoning.md) · **Week 11 of 11** · [Curriculum index →](README.md)
 
-## Complete lecture deck
+## Optional slide gallery
 
-{% include slide-deck.html week="11" count=50 title="Lecture 11: Frontiers and Open Problems" %}
+{% include slide-deck.html week="11" count=50 title="Lecture 11: Frontiers and Open Problems" transcript="/transcripts/week-11-frontiers.html" %}
 
 ## Outcomes
 

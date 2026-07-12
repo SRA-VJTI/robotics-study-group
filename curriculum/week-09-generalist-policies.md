@@ -2,9 +2,9 @@
 
 [← World Models](week-08-world-models.md) · **Week 9 of 11** · [Next: Embodied Reasoning →](week-10-embodied-reasoning.md)
 
-## Complete lecture deck
+## Optional slide gallery
 
-{% include slide-deck.html week="09" count=59 title="Lecture 9: Generalist Robot Policies" %}
+{% include slide-deck.html week="09" count=59 title="Lecture 9: Generalist Robot Policies" transcript="/transcripts/week-09-generalist-policies.html" %}
 
 ## Outcomes
 

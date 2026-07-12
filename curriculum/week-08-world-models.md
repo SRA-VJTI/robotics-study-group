@@ -2,9 +2,9 @@
 
 [← Sequence Modeling](week-07-sequence-modeling.md) · **Week 8 of 11** · [Next: Generalist Policies →](week-09-generalist-policies.md)
 
-## Complete lecture deck
+## Optional slide gallery
 
-{% include slide-deck.html week="08" count=55 title="Lecture 8: World Models" %}
+{% include slide-deck.html week="08" count=55 title="Lecture 8: World Models" transcript="/transcripts/week-08-world-models.html" %}
 
 ## Outcomes
 

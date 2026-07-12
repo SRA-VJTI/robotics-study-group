@@ -1,6 +1,7 @@
 <div class="deck-note">
-  <strong>Complete deck:</strong> {{ include.count }} slides rendered locally.
+  <strong>Optional slide gallery:</strong> {{ include.count }} slides rendered locally.
   Select any slide to open the full-resolution image.
+  <a class="transcript-link" href="{{ include.transcript | relative_url }}">← Return to the default OCR Markdown view</a>
 </div>
 <section class="source-deck" aria-label="{{ include.title }} complete lecture slides">
   {% for slide in (1..include.count) %}

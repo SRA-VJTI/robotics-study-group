@@ -2,9 +2,9 @@
 
 [← Control and MDPs](week-02-control-and-mdps.md) · **Week 3 of 11** · [Next: Reinforcement Learning I →](week-04-reinforcement-learning-i.md)
 
-## Complete lecture deck
+## Optional slide gallery
 
-{% include slide-deck.html week="03" count=45 title="Lecture 3: Imitation Learning" %}
+{% include slide-deck.html week="03" count=45 title="Lecture 3: Imitation Learning" transcript="/transcripts/week-03-imitation-learning.html" %}
 
 ## Outcomes
 

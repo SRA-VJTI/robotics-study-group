@@ -6,7 +6,8 @@ Move from the mechanics of robot learning to the ability to design, implement, a
 
 ## What is on each lecture page
 
-- Every page of the complete source lecture deck, rendered locally
+- A searchable Markdown transcript generated with OCR as the default view
+- Every page of the complete source lecture deck in an optional slide gallery
 - An original concept diagram designed for this study group
 - A compact method/component comparison
 - Key equations with implementation interpretation
