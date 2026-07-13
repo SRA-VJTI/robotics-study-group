@@ -1,5 +1,7 @@
 # Curriculum guide
 
+[← Home](../README.md)
+
 ## Goal
 
 Move from the mechanics of robot learning to the ability to design, implement, and evaluate a small modern system. The sequence is cumulative: later sessions reuse the same task contract, dataset format, and evaluation habits established in weeks 1–3.
@@ -34,19 +36,19 @@ Use one lightweight task for several weeks so algorithm differences remain inter
 
 ## Reading list by week
 
-| Week | Suggested discussion papers |
-| ---: | --- |
-| 1 | No required paper; agree on task and evaluation conventions. |
-| 2 | [Simple random search provides a competitive approach to RL](https://arxiv.org/abs/1803.07055); [Deep RL Doesn't Work Yet](https://www.alexirpan.com/2018/02/14/rl-hard.html); [Curiosity-driven Exploration](https://arxiv.org/abs/1705.05363) |
-| 3 | [Causal Confusion in Imitation Learning](https://arxiv.org/abs/1905.11979); [Representation Learning for Visual Imitation](https://arxiv.org/abs/2112.01511); [Transporter Networks](https://arxiv.org/abs/2010.14406) |
-| 4 | [Evolution Strategies as a Scalable Alternative to RL](https://arxiv.org/abs/1703.03864); [Learning Synergies Between Pushing and Grasping](https://arxiv.org/abs/1803.09956); [Human-in-the-loop RL for Dexterous Manipulation](https://arxiv.org/abs/2410.21845) |
-| 5 | [End-to-End Training of Deep Visuomotor Policies](https://arxiv.org/abs/1504.00702); [Eureka](https://arxiv.org/abs/2310.12931); [Latent Plans for Task-Agnostic Offline RL](https://arxiv.org/abs/2209.08959) |
-| 6 | [Diffuser](https://arxiv.org/abs/2205.09991); [Implicit Behavioral Cloning](https://arxiv.org/abs/2109.00137); [Steering Your Diffusion Policy with Latent Space RL](https://arxiv.org/abs/2506.15799) |
-| 7 | [Decision Transformer](https://arxiv.org/abs/2106.01345); [ALOHA](https://arxiv.org/abs/2304.13705); [Humanoid Locomotion as Next Token Prediction](https://arxiv.org/abs/2402.19469) |
-| 8 | [Universal Policies via Text-Guided Video Generation](https://arxiv.org/abs/2302.00111); [Training Agents Inside Scalable World Models](https://arxiv.org/abs/2509.24527); [World Action Models are Zero-shot Policies](https://dreamzero0.github.io/DreamZero.pdf) |
-| 9 | [Language Conditioned Imitation Learning](https://arxiv.org/abs/2005.07648); [Gato](https://arxiv.org/abs/2205.06175); [π*0.6](https://arxiv.org/abs/2511.14759) |
-| 10 | [In-Context Imitation Learning](https://arxiv.org/abs/2408.15980); [Voyager](https://arxiv.org/abs/2305.16291); [Training Strategies for Efficient Embodied Reasoning](https://arxiv.org/abs/2505.08243) |
-| 11 | [A Path Towards Autonomous Machine Intelligence](https://openreview.net/forum?id=BZ5a1r-kVsf); [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html); [Intelligence without Representation](https://people.csail.mit.edu/brooks/papers/representation.pdf) |
+| Week | Lecture | Suggested discussion papers |
+| ---: | --- | --- |
+| 1 | [Open lecture](week-01-introduction.md) | No required paper; agree on task and evaluation conventions. |
+| 2 | [Open lecture](week-02-control-and-mdps.md) | [Simple random search provides a competitive approach to RL](https://arxiv.org/abs/1803.07055); [Deep RL Doesn't Work Yet](https://www.alexirpan.com/2018/02/14/rl-hard.html); [Curiosity-driven Exploration](https://arxiv.org/abs/1705.05363) |
+| 3 | [Open lecture](week-03-imitation-learning.md) | [Causal Confusion in Imitation Learning](https://arxiv.org/abs/1905.11979); [Representation Learning for Visual Imitation](https://arxiv.org/abs/2112.01511); [Transporter Networks](https://arxiv.org/abs/2010.14406) |
+| 4 | [Open lecture](week-04-reinforcement-learning-i.md) | [Evolution Strategies as a Scalable Alternative to RL](https://arxiv.org/abs/1703.03864); [Learning Synergies Between Pushing and Grasping](https://arxiv.org/abs/1803.09956); [Human-in-the-loop RL for Dexterous Manipulation](https://arxiv.org/abs/2410.21845) |
+| 5 | [Open lecture](week-05-reinforcement-learning-ii.md) | [End-to-End Training of Deep Visuomotor Policies](https://arxiv.org/abs/1504.00702); [Eureka](https://arxiv.org/abs/2310.12931); [Latent Plans for Task-Agnostic Offline RL](https://arxiv.org/abs/2209.08959) |
+| 6 | [Open lecture](week-06-generative-models.md) | [Diffuser](https://arxiv.org/abs/2205.09991); [Implicit Behavioral Cloning](https://arxiv.org/abs/2109.00137); [Steering Your Diffusion Policy with Latent Space RL](https://arxiv.org/abs/2506.15799) |
+| 7 | [Open lecture](week-07-sequence-modeling.md) | [Decision Transformer](https://arxiv.org/abs/2106.01345); [ALOHA](https://arxiv.org/abs/2304.13705); [Humanoid Locomotion as Next Token Prediction](https://arxiv.org/abs/2402.19469) |
+| 8 | [Open lecture](week-08-world-models.md) | [Universal Policies via Text-Guided Video Generation](https://arxiv.org/abs/2302.00111); [Training Agents Inside Scalable World Models](https://arxiv.org/abs/2509.24527); [World Action Models are Zero-shot Policies](https://dreamzero0.github.io/DreamZero.pdf) |
+| 9 | [Open lecture](week-09-generalist-policies.md) | [Language Conditioned Imitation Learning](https://arxiv.org/abs/2005.07648); [Gato](https://arxiv.org/abs/2205.06175); [π*0.6](https://arxiv.org/abs/2511.14759) |
+| 10 | [Open lecture](week-10-embodied-reasoning.md) | [In-Context Imitation Learning](https://arxiv.org/abs/2408.15980); [Voyager](https://arxiv.org/abs/2305.16291); [Training Strategies for Efficient Embodied Reasoning](https://arxiv.org/abs/2505.08243) |
+| 11 | [Open lecture](week-11-frontiers.md) | [A Path Towards Autonomous Machine Intelligence](https://openreview.net/forum?id=BZ5a1r-kVsf); [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html); [Intelligence without Representation](https://people.csail.mit.edu/brooks/papers/representation.pdf) |
 
 The [official course page](https://cvg.ethz.ch/lectures/Robot-Learning/) is the source of truth for its schedule and links.
 
