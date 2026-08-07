@@ -34,7 +34,7 @@ the goal is to learn a policy $\pi$ that imitates the expert's behaviour.
 
 ## Behaviour cloning
 
-The simplest approach — treat imitation as supervised learning. Given $\mathcal{D} = \{(s_1, a_1, \ldots, s_T)\}$, for a deterministic policy, regress onto the expert's actions:
+The simplest approach — treat imitation as supervised learning. Given $\mathcal{D} = \\{(s_1, a_1, \ldots, s_T)\\}$, for a deterministic policy, regress onto the expert's actions:
 
 $$
 \min_\theta \; \frac{1}{|\mathcal{D}|} \sum_{(s, a) \in \mathcal{D}} \lVert a - \hat{a} \rVert^2, \qquad \hat{a} = \pi_\theta(s)
@@ -74,7 +74,7 @@ Idea: instead of being clever about the policy, be clever about the **data** —
 
 1. **Roll out** $\pi_\theta$ on the robot.
 2. **Query the expert:** label the visited states $s'$ with expert actions $a^*$.
-3. **Aggregate** the corrections with the existing data: $\mathcal{D} \leftarrow \mathcal{D} \cup \{(s', a^*)\}$.
+3. **Aggregate** the corrections with the existing data: $\mathcal{D} \leftarrow \mathcal{D} \cup \\{(s', a^*)\\}$.
 4. **Update the policy:** $\theta \leftarrow \arg\min_\theta L(\pi_\theta, \mathcal{D})$, and repeat.
 
 ### The good
