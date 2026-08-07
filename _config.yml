@@ -2,5 +2,8 @@ theme: jekyll-theme-cayman
 title: Robotics Study Group
 description: A build-first path from robot-learning fundamentals to robot foundation models
 show_downloads: false
+kramdown:
+  # Emit raw delimiters and let MathJax (loaded in _includes/head-custom.html) render them.
+  math_engine: null
 exclude:
   - tmp
