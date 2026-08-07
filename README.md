@@ -23,7 +23,7 @@ Each lecture page contains the complete source deck plus original study-group di
 | ---: | --- | --- | ---: | --- |
 | 1 | Introduction to Robot Learning | [Open lecture](curriculum/week-01-introduction.md) | 44 | Define a robot task and evaluation contract |
 | 2 | Robot Control and MDPs | [Open lecture](curriculum/week-02-control-and-mdps.md) | 46 | PID/control baseline plus a tiny MDP solver |
-| 3 | Imitation Learning | [Open lecture](curriculum/week-03-imitation-learning.md) | 45 | Behavior cloning and DAgger comparison |
+| 3 | Imitation Learning | [Open notes](curriculum/week-03-imitation-learning.md) | — | Behavior cloning and DAgger comparison |
 | 4 | Reinforcement Learning I | [Open lecture](curriculum/week-04-reinforcement-learning-i.md) | 45 | Value iteration and DQN baseline |
 | 5 | Reinforcement Learning II | [Open lecture](curriculum/week-05-reinforcement-learning-ii.md) | 36 | PPO or SAC with a clean evaluation loop |
 | 6 | Generative Models for Control | [Open lecture](curriculum/week-06-generative-models.md) | 39 | Multimodal action-policy prototype |

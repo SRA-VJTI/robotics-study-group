@@ -1,110 +1,166 @@
-# Imitation Learning
+# Week 03 — Imitation Learning
 
+[← Control and MDPs](week-02-control-and-mdps.md) · **Week 3 of 11** · [Next: Reinforcement Learning I →](week-04-reinforcement-learning-i.md)
 
-prerequire
+## Outcomes
 
-notations of imitation learning or intellegent systems or learning systems in general
+- Explain why supervised accuracy is insufficient for closed-loop imitation.
+- Compare behavior cloning, DAgger, and expressive multimodal policies.
+- Diagnose distribution shift, mode averaging, and causal confusion.
 
-at - action 
-ot - observations
-st - stae
+## Prerequisites: notation
 
-t - trajectory
+Notation for imitation learning (and intelligent/learning systems in general):
 
-r(s,a) - reward
+| Symbol | Meaning |
+| --- | --- |
+| $a_t$ | Action at time $t$ |
+| $o_t$ | Observation at time $t$ |
+| $s_t$ | State at time $t$ |
+| $\tau$ | Trajectory: $\tau = (s_1, a_1, s_2, a_2, \ldots, s_T)$ |
+| $r(s, a)$ | Reward |
 
+**Example:** for a self-driving car, $o_t$ is the camera image, $s_t$ is the car's pose and velocity, $a_t$ is the steering/throttle command, and $\tau$ is one full drive.
 
-example ??
+## What is imitation learning?
 
+Given a set of trajectories collected by an **expert**, called **demonstrations**:
 
-imitation learning: given set of traejcotries collected by an "expert" called as "demonstration"
+$$
+\mathcal{D} = \{ (s_1, a_1, \ldots, s_T) \}
+$$
 
-D = {(s1,a1,....,st)}
+the goal is to learn a policy $\pi$ that imitates the expert's behaviour.
 
+## Behaviour cloning
 
+The simplest approach — treat imitation as supervised learning. Given $\mathcal{D} = \{(s_1, a_1, \ldots, s_T)\}$, for a deterministic policy, regress onto the expert's actions:
 
-the goal is to learn a policy Pi that imitates the expert behaviour
+$$
+\min_\theta \; \frac{1}{|\mathcal{D}|} \sum_{(s, a) \in \mathcal{D}} \lVert a - \hat{a} \rVert^2, \qquad \hat{a} = \pi_\theta(s)
+$$
 
+then deploy $\pi_\theta$ on the robot.
 
+### Does it work?
 
-i.e beheaviour cloning
+Sometimes, yes — see [*End to End Learning for Self-Driving Cars*](https://arxiv.org/abs/1604.07316) (Bojarski et al., 2016), which trained a CNN to map raw camera pixels directly to steering commands.
 
-given D={(s1,a1....st)}
+### Trick: "data augmentation"
 
-for dtereministic policy regress to expert actions
+Bojarski et al. add **fake data that illustrates corrections**, using side-facing cameras: the left/right camera views look like the car has drifted off-centre, so they are relabelled with the corrective steering command.
 
-mintheta 1/|d| sigma(s,a)bnelongsD||a-a||^2 where a=pi0(s)
+![Data augmentation with side cameras](../assets/diagrams/week-03-camera-augmentation.svg)
 
-deploy policy p0 on the robot
+## The upper bound of behaviour cloning
 
+![Compounding error: the policy drifts away from the expert's states](../assets/diagrams/week-03-compounding-error.svg)
 
-does it work?
+The policy makes a small mistake ($\epsilon$ per step), lands in a state the expert never demonstrated, and makes a bigger mistake there. Over a time horizon $T$, this **distribution shift** causes the error to compound **quadratically**:
 
-cite end ot end learning for selfd dsirivng cars bojarski et all 2016
+$$
+\mathbb{E}[\text{cost}] \in O(\epsilon T^2)
+$$
 
+See [*A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning*](https://arxiv.org/abs/1011.0686) (Ross et al., 2011).
 
+## Addressing compounding error: DAgger
 
-add fake data that illustrates correction with side facing cameras 
+How can we make $p_{\text{expert}}(s) = p_{\pi}(s)$ — i.e. states visited by the expert $=$ states visited by the policy?
 
+Idea: instead of being clever about the policy, be clever about the **data** — make the dataset cover the states the policy actually visits.
 
-"data augmenetation"
+![The DAgger loop](../assets/diagrams/week-03-dagger-loop.svg)
 
+1. **Roll out** $\pi_\theta$ on the robot.
+2. **Query the expert:** label the visited states $s'$ with expert actions $a^*$.
+3. **Aggregate** the corrections with the existing data: $\mathcal{D} \leftarrow \mathcal{D} \cup \{(s', a^*)\}$.
+4. **Update the policy:** $\theta \leftarrow \arg\min_\theta L(\pi_\theta, \mathcal{D})$, and repeat.
 
+### The good
 
-the upper bound of beuhaviour cloning 
+- Lets the human take control — the true expert.
+- Paradox: it works *better* if the data contains more mistakes and recoveries.
+- Hence the algorithm converges: $p_\pi(s) = p_{\text{expert}}(s)$.
+- Achieves $O(\epsilon T)$ error instead of behaviour cloning's $O(\epsilon T^2)$.
 
-add the figurte of actiona nbd state drift
-for time horizon T
+### The bad
 
+- How do we detect when an intervention is needed?
+- Hindsight labelling and expert queries are difficult — this is not ideal in practice.
 
-districvtubion shift causes the error to grow quadratically
+**Example:** Waymo self-driving safety drivers (teleoperators) take over when needed, and those interventions become labelled recovery data.
 
-"a reduction of iomiation learning and structured prediction to no regret online learning" by ross el all 2011
+## Why might we still fail to mimic the expert?
 
+- The policy's action depends only on the **current** observation, but human behaviour may be affected by past observations, emotions, privileged information, etc. (non-Markovian behaviour).
+- Human observations $\neq$ robot camera observations — the expert may see and sense things the robot cannot.
+- The expert's action distribution is **multimodal**, and an MSE policy averages the modes — see below.
 
-addressing compounding error
+## Why the MSE policy fails: mode averaging
 
-how can we make p(expert) = ppi(s)
+Demonstrations are multimodal: faced with a tree, half the experts swerve left and half swerve right, so the true action distribution $p(a \mid s)$ has several modes. Minimizing MSE is maximum likelihood under a *single* Gaussian, so the optimal prediction is the conditional mean:
 
-states visited expert  = staes visited by the policy
+$$
+\pi_\theta(s) = \mathbb{E}[a \mid s]
+$$
 
- 
-flow of how dagger works 
+and the mean of "left" and "right" is "straight into the tree" — an action no expert ever took.
 
-rollout pi0 -> quer label expert action at visited states a* -> aggregate coorectio with exeisting data D<-DU{(s`,a*)}
-update policy <- arg min L{pi0, D}
+![Mode averaging under an MSE loss](../assets/diagrams/week-03-mode-averaging.svg)
 
+Concretely, if the expert's actions follow a mixture of Gaussians,
 
+$$
+p(a \mid s) = \sum_{i=1}^{k} w_i(s)\, \mathcal{N}\big(a;\ \mu_i(s), \Sigma_i(s)\big),
+$$
 
+the MSE-optimal policy outputs $\sum_i w_i \mu_i$ — which can land in a near-zero-probability valley *between* the modes.
 
+## Expressive policies
 
+Fix: replace the implicit unimodal Gaussian with a distribution class that can represent multiple modes.
 
+- **Diffusion policies:** start from Gaussian noise and iteratively denoise it into an action, conditioning every step on $s$. Extremely expressive; the cost is inference-time compute — many denoising steps per action. ([Diffusion Policy](https://arxiv.org/abs/2303.04137), Chi et al., 2023)
+- **Autoregressive discretization:** discretize each action dimension into bins and predict one dimension at a time with a softmax — a language model over action tokens: $\pi_\theta(a \mid s) = \prod_d \pi_\theta(a_d \mid s, a_{1:d-1})$. A categorical can put mass on any bins (arbitrarily multimodal), and autoregression keeps the bin count linear in the action dimension instead of exponential. Costs resolution to the binning. (e.g. [RT-1](https://arxiv.org/abs/2212.06817))
+- **Latent variable models (CVAE):** feed noise through the network, $a = \pi_\theta(s, z)$ with $z \sim \mathcal{N}(0, I)$ — different samples of $z$ select different modes; trained with a variational lower bound. (e.g. [ACT](https://arxiv.org/abs/2304.13705))
+- **Mixture of Gaussians (MDN):** the network outputs $k$ weights, means, and covariances: $\pi_\theta(a \mid s) = \sum_{i=1}^{k} w_i(s)\, \mathcal{N}\big(a; \mu_i(s), \Sigma_i(s)\big)$. Simple and expressive, but you must **predefine** the number of modes $k$.
 
-goods
-lets the human take the control, the true expert
-paradox bc works better if the data has more mistakes nad recoeries
-hence algho with converge pi(s) = p expert
-achives O(t) instead of BC 0(<AT^2)
+## Scaling control to "any" task
 
+How do we go from one policy per task to one policy for any task?
 
-bads
-how to detect when anintervention is needed
-hindsight laberlling and expertt query difficuilt this is not ideal
+1. **Single task:** $\pi_\theta(a \mid s)$ — one policy per task, nothing shared.
+2. **Task-conditioned:** $\pi_\theta(a \mid s, z_{\text{task}})$ — condition on a task ID (one-hot, or a language embedding). One network, data shared across tasks — but only for a *predefined* list of tasks.
+3. **Goal-conditioned:** $\pi_\theta(a \mid s, g)$ — condition on a **goal state** $g$ (e.g. an image of the desired outcome). "Any task" becomes "reach any goal state". Bonus: **hindsight relabelling** — whatever state a trajectory actually ended in is a valid goal for that trajectory, so every trajectory supervises goal-reaching for free.
 
+Caveat: goal-conditioning only covers tasks expressible as reaching a state — "wave hello" or "keep the cup upright while moving" don't map cleanly to a single goal state.
 
+## Dataset and architecture decisions
 
+- Store observation timestamps, action timestamps, control frequency, and episode boundaries.
+- Split by trajectory or scene—not individual frames—to avoid leakage.
+- Normalize actions with training-set statistics and record the inverse transform.
+- Choose whether the policy sees a frame, stacked frames, or recurrent history.
+- For visual policies, compare frozen pretrained features with end-to-end training.
 
+## Failure modes
 
-exmaple waymo self driving
+- Validation loss falls while closed-loop success collapses.
+- Mean regression averages two valid modes into an invalid motion.
+- The policy keys on gripper state, background, or demonstrator artifacts.
+- Demonstrations show success paths but no recovery behavior.
 
+## Paper discussion
 
-why mght we still fail to mimick the exeprt
+Contrast the diagnosis in [Causal Confusion in Imitation Learning](https://arxiv.org/abs/1905.11979) with the empirical case for pretrained visual representations in [Pari et al.](https://arxiv.org/abs/2112.01511).
 
-action depends only on current observation, human bejhaviour mightbe afffected by past observertions, emotions aand privileged informatione tc
+## Build milestone
 
+Collect or synthesize demonstrations, train behavior cloning, then introduce initial-state noise. Add either DAgger or recovery data and compare closed-loop success—not just validation loss—over three seeds.
 
+Plot performance against perturbation magnitude and dataset size. Include the expert, a random policy, and behavior cloning before claiming the interactive method helps.
 
+---
 
-also human obs != robot caerma observation
-
-
+[← Control and MDPs](week-02-control-and-mdps.md) · [Next: Reinforcement Learning I →](week-04-reinforcement-learning-i.md)

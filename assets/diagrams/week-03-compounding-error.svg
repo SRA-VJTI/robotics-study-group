@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="240" viewBox="0 0 760 240" role="img" aria-labelledby="title desc">
+  <title id="title">Compounding error, step by step</title>
+  <desc id="desc">Discrete timesteps: expert states stay on course while the learned policy's states drift further each step; the gap grows on the order of epsilon T squared.</desc>
+  <defs><marker id="axr" markerWidth="8" markerHeight="8" refX="7" refY="2.5" orient="auto"><path d="M0 0 L7 2.5 L0 5 z" fill="#8b95a5"/></marker></defs>
+  <g stroke="#8b95a5" stroke-width="1" stroke-dasharray="3 4" opacity="0.6">
+    <line x1="220" y1="81" x2="220" y2="87"/>
+    <line x1="300" y1="79" x2="300" y2="95"/>
+    <line x1="380" y1="80" x2="380" y2="107"/>
+    <line x1="460" y1="78" x2="460" y2="121"/>
+    <line x1="540" y1="81" x2="540" y2="139"/>
+    <line x1="620" y1="79" x2="620" y2="159"/>
+  </g>
+  <line x1="700" y1="78" x2="700" y2="183" stroke="#8b95a5" stroke-width="1" stroke-dasharray="3 4"/>
+  <polyline points="60,80 140,78 220,81 300,79 380,80 460,78 540,81 620,79 700,78" fill="none" stroke="#14b8a6" stroke-width="1.5"/>
+  <polyline points="60,80 140,83 220,87 300,95 380,107 460,121 540,139 620,159 700,183" fill="none" stroke="#e0776f" stroke-width="1.5"/>
+  <g fill="#14b8a6">
+    <circle cx="140" cy="78" r="3.5"/><circle cx="220" cy="81" r="3.5"/><circle cx="300" cy="79" r="3.5"/><circle cx="380" cy="80" r="3.5"/><circle cx="460" cy="78" r="3.5"/><circle cx="540" cy="81" r="3.5"/><circle cx="620" cy="79" r="3.5"/><circle cx="700" cy="78" r="3.5"/>
+  </g>
+  <g fill="#e0776f">
+    <circle cx="140" cy="83" r="3.5"/><circle cx="220" cy="87" r="3.5"/><circle cx="300" cy="95" r="3.5"/><circle cx="380" cy="107" r="3.5"/><circle cx="460" cy="121" r="3.5"/><circle cx="540" cy="139" r="3.5"/><circle cx="620" cy="159" r="3.5"/><circle cx="700" cy="183" r="3.5"/>
+  </g>
+  <circle cx="60" cy="80" r="4" fill="#8b95a5"/>
+  <line x1="50" y1="210" x2="710" y2="210" stroke="#8b95a5" stroke-width="1" marker-end="url(#axr)"/>
+  <g stroke="#8b95a5" stroke-width="1">
+    <line x1="60" y1="207" x2="60" y2="213"/>
+    <line x1="700" y1="207" x2="700" y2="213"/>
+  </g>
+  <g font-family="DM Sans, sans-serif" font-size="13">
+    <text x="700" y="58" text-anchor="end" fill="#14b8a6">expert</text>
+    <text x="640" y="200" text-anchor="end" fill="#e0776f">learned policy π<tspan font-size="10" dy="2">θ</tspan></text>
+    <text x="688" y="136" text-anchor="end" fill="#8b95a5">O(εT²)</text>
+    <text x="308" y="92" fill="#8b95a5" font-size="11">ε</text>
+    <text x="60" y="230" text-anchor="middle" fill="#8b95a5" font-size="12">0</text>
+    <text x="700" y="230" text-anchor="middle" fill="#8b95a5" font-size="12">T</text>
+    <text x="722" y="214" fill="#8b95a5">t</text>
+  </g>
+</svg>

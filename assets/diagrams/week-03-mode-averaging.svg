@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="220" viewBox="0 0 760 220" role="img" aria-labelledby="title desc">
+  <title id="title">Mode averaging under an MSE loss</title>
+  <desc id="desc">A bimodal expert action distribution with two peaks; the MSE-optimal mean action falls in the low-probability valley between them.</desc>
+  <defs><marker id="ma" markerWidth="8" markerHeight="8" refX="7" refY="2.5" orient="auto"><path d="M0 0 L7 2.5 L0 5 z" fill="#8b95a5"/></marker></defs>
+  <path d="M70 178 C150 178 170 70 240 70 C310 70 320 168 380 168 C440 168 450 70 520 70 C590 70 610 178 690 178" fill="none" stroke="#14b8a6" stroke-width="2"/>
+  <line x1="380" y1="100" x2="380" y2="178" stroke="#e0776f" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <circle cx="380" cy="178" r="3.5" fill="#e0776f"/>
+  <line x1="60" y1="180" x2="710" y2="180" stroke="#8b95a5" stroke-width="1" marker-end="url(#ma)"/>
+  <g font-family="DM Sans, sans-serif" font-size="13">
+    <text x="66" y="56" fill="#8b95a5">p(a | s)</text>
+    <text x="240" y="55" text-anchor="middle" fill="#14b8a6">swerve left</text>
+    <text x="520" y="55" text-anchor="middle" fill="#14b8a6">swerve right</text>
+    <text x="380" y="92" text-anchor="middle" fill="#e0776f">mean action (MSE)</text>
+    <text x="380" y="205" text-anchor="middle" fill="#8b95a5" font-size="12">no expert ever took this action</text>
+    <text x="722" y="184" fill="#8b95a5">a</text>
+  </g>
+</svg>
