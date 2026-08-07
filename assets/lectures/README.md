@@ -2,7 +2,7 @@
 
 This directory contains page-faithful website renders of the 11 ETH Robot Learning lecture decks. Redistribution permission was confirmed for this repository. The slide content retains the copyright and reuse terms of the source decks and is not covered by the repository's MIT license.
 
-| Week | Source filename | Slides |
+| Lecture | Source filename | Slides |
 | ---: | --- | ---: |
 | 1 | `lecture1_intro.pdf` | 44 |
 | 2 | `lecture2_control_mdp.pdf` | 46 |

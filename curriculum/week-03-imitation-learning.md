@@ -1,6 +1,6 @@
-# Week 03 — Imitation Learning
+# Imitation Learning
 
-[← Control and MDPs](week-02-control-and-mdps.md) · **Week 3 of 11** · [Next: Reinforcement Learning I →](week-04-reinforcement-learning-i.md)
+[← All topics](README.md)
 
 ## Outcomes
 
@@ -160,7 +160,3 @@ Contrast the diagnosis in [Causal Confusion in Imitation Learning](https://arxiv
 Collect or synthesize demonstrations, train behavior cloning, then introduce initial-state noise. Add either DAgger or recovery data and compare closed-loop success—not just validation loss—over three seeds.
 
 Plot performance against perturbation magnitude and dataset size. Include the expert, a random policy, and behavior cloning before claiming the interactive method helps.
-
----
-
-[← Control and MDPs](week-02-control-and-mdps.md) · [Next: Reinforcement Learning I →](week-04-reinforcement-learning-i.md)
