@@ -73,8 +73,8 @@ Idea: instead of being clever about the policy, be clever about the **data** —
 ![The DAgger loop](../assets/diagrams/week-03-dagger-loop.svg)
 
 1. **Roll out** $\pi_\theta$ on the robot.
-2. **Query the expert:** label the visited states $s'$ with expert actions $a^*$.
-3. **Aggregate** the corrections with the existing data: $\mathcal{D} \leftarrow \mathcal{D} \cup \\{(s', a^*)\\}$.
+2. **Query the expert:** label the visited states $s^{\prime}$ with expert actions $a^*$.
+3. **Aggregate** the corrections with the existing data: $\mathcal{D} \leftarrow \mathcal{D} \cup \\{(s^{\prime}, a^*)\\}$.
 4. **Update the policy:** $\theta \leftarrow \arg\min_\theta L(\pi_\theta, \mathcal{D})$, and repeat.
 
 ### The good
