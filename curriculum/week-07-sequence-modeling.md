@@ -268,7 +268,18 @@ Predict the next $k$ actions as a chunk, run them, then query again. Actions are
 
 - Long chunks (e.g. 100) leave the robot blind while the chunk runs.
 - **Temporal ensembling:** query every step, so each timestep gets several overlapping predictions, blended with exponentially decaying weights. Keeps smoothness and stays responsive.
-- **ACT:** bimanual ALOHA at 50 Hz, chunks of 100 actions × 14 joints = 1,400 values per forward pass. A specialist policy with no LLM.
+
+#### ACT: Action Chunking with Transformers (Zhao et al., 2023)
+
+![ACT architecture](../assets/diagrams/act-architecture.svg)
+
+The policy that made chunking work, built for the low-cost bimanual **ALOHA** robot (14 joints, 50 Hz) and trained by imitation on human teleoperation demos. It is a specialist policy with no LLM, and it handles precise two-arm tasks like battery insertion, where a one-step reactive policy at 50 Hz would struggle.
+
+- **Input:** 4 camera images (each goes through a ResNet18 into feature tokens) plus the 14 joint positions.
+- **Model:** a transformer **encoder** fuses all the tokens. A transformer **decoder** with $k$ fixed position queries cross-attends to it and outputs the whole chunk in one forward pass: $k = 100$ actions × 14 joints = 1,400 values, about 2 seconds of motion.
+- **Why chunk:** the effective horizon shrinks $k$-fold, so errors compound less, and the motion comes out smooth.
+- **Training:** a CVAE. A latent $z$ absorbs the variation between human demos (different paths, pauses), so the policy does not average them into a bad action. $z = 0$ at test time.
+- **Inference:** query at every step and blend the overlapping chunks with temporal ensembling, weights $w_i = e^{-m i}$ ($i = 0$ is the oldest prediction; a smaller $m$ lets new observations in faster).
 
 ---
 
