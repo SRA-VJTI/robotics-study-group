@@ -4,15 +4,7 @@
 
 **Know these first:** reactive policies, RNNs, MDP, POMDP
 **Topics:** RNNs, transformers, ViTs, LLMs, VLMs, VLAs (basic)
-**Before the session:** *Attention Is All You Need*; ACT paper (Zhao et al.); pen and paper for the attention example.
-
-## Outcomes
-
-- Explain why a one-frame policy struggles and what sequence modeling changes.
-- Write the attention equation and say what each part does.
-- Describe tokens, positional encodings, causal masking, teacher forcing.
-- Say what the KV cache stores, how big it gets, and how it differs from an RNN hidden state.
-- Explain how text, images and robot actions go into one transformer, and why action chunking smooths motion.
+**Before the session:** *Attention Is All You Need*; ACT paper (Zhao et al.); FAST paper (Pertsch et al.); pen and paper for the attention example.
 
 ## Core notes
 
@@ -52,11 +44,9 @@ $$
 | $\pi(a_t \mid o_t)$ | Policy: how likely is this action given what the robot sees |
 | $P(o_{t+1} \mid o_t, a_t)$ | The world's reply to the action |
 
-The product runs to $T-1$ because there are $T$ transitions but $T+1$ observations.
+Only $\pi$ depends on the policy parameters, so when you differentiate $\log p_\pi(\tau)$ the $\rho$ and $P$ terms drop out. You can train a policy without knowing the physics.
 
-**Only $\pi$ depends on the policy parameters.** When you differentiate $\log p_\pi(\tau)$, $\rho$ and $P$ drop out, so you can train a policy without knowing the physics.
-
-**Where it breaks.** Truthfully, a hidden state sits in the middle: physics moves it, $P(s_{t+1} \mid s_t, a_t)$, then a sensor reads it, $O(o_{t+1} \mid s_{t+1})$. The simple form is exact only if $o_t$ is a **sufficient statistic** of the state. Example: a gripper closes on a cube. The images and commands are identical, but the cube is heavy in one run and light in the other. The next frames differ and the camera cannot see mass, so no single $P(o_{t+1} \mid o_t, a_t)$ fits both. The fix is to condition on the full history $h_t$: $\pi(a_t \mid h_t)$. Papers still write the simple form as shorthand, usually with frame stacking or a wrist camera to make $o_t$ nearly sufficient.
+**Where it breaks.** The simple form is exact only if $o_t$ is a **sufficient statistic** of the hidden state (truly, physics moves a hidden state and a sensor reads it out). Example: a gripper closes on a cube, with identical images and commands, but the cube is heavy in one run and light in the other. The camera cannot see mass, so no single $P(o_{t+1} \mid o_t, a_t)$ fits both. The fix is to condition on the full history: $\pi(a_t \mid h_t)$. Papers still use the simple form as shorthand, usually with frame stacking or a wrist camera.
 
 ### 3. Chain rule and RNNs
 
@@ -76,13 +66,11 @@ An **RNN** models each conditional with a hidden state updated each step, $h_t =
 
 ### 4. Attention
 
-**Idea.** Every token looks at every other token in one hop and decides which matter. This fixes all three RNN problems: direct long-range links, parallel training, no single bottleneck vector.
+Every token looks at every other token in one hop and decides which matter. This fixes all three RNN problems: direct long-range links, parallel training, no single bottleneck vector.
 
 ![RNN chain vs attention direct access](../assets/diagrams/rnn-vs-attention.svg)
 
-**Query / key / value.** Each token makes three vectors: a **query** $q$ (what I am looking for), a **key** $k$ (what I advertise), a **value** $v$ (what I hand over if chosen).
-
-**The math.** Stack the $n$ token embeddings into $X \in \mathbb{R}^{n \times d_{\text{model}}}$ and project:
+Each token makes three vectors: a **query** $q$ (what I am looking for), a **key** $k$ (what I advertise), a **value** $v$ (what I hand over if chosen). Stack the $n$ token embeddings into $X \in \mathbb{R}^{n \times d_{\text{model}}}$ and project:
 
 $$
 Q = XW_Q,\qquad K = XW_K,\qquad V = XW_V
@@ -95,20 +83,15 @@ $$
 | Piece | Shape | What it does |
 |---|---|---|
 | $W_Q, W_K, W_V$ | $d_{\text{model}} \times d_k$ | Learned projections that create $q$, $k$, $v$ |
-| $QK^\top$ | $n \times n$ | Entry $(i,j)$ = dot product of query $i$ with key $j$. How relevant token $j$ is to token $i$ |
+| $QK^\top$ | $n \times n$ | Entry $(i,j)$ = dot product of query $i$ with key $j$: how relevant token $j$ is to token $i$ |
 | $\sqrt{d_k}$ | scalar | Dot products of $d_k$-dim vectors have variance $\propto d_k$. Without scaling, large scores saturate softmax and gradients vanish |
-| $M$ | $n \times n$ | Mask. $0$ where allowed, $-\infty$ for future tokens in causal attention, so their weight becomes 0 |
+| $M$ | $n \times n$ | Mask: $0$ where allowed, $-\infty$ for future tokens in causal attention, so their weight becomes 0 |
 | softmax | row-wise | Turns each row into positive weights summing to 1 |
 | $\cdot V$ | $n \times d_v$ | Each output is the weighted average of all value vectors |
 
-So it is a **soft dictionary**: a normal dictionary returns one entry, attention returns a blend of all entries weighted by key-query match. Everything is differentiable, so the model learns what to store in $q, k, v$ and where to look.
+It is a **soft dictionary**: a normal dictionary returns one entry, attention returns a blend of all entries weighted by key-query match. Everything is differentiable, so the model learns both what to store in $q, k, v$ and where to look. **Multi-head:** run $h$ attentions in parallel with their own $W_Q, W_K, W_V$ (and $d_k = d_{\text{model}}/h$), concatenate, apply $W_O$.
 
-**Multi-head.** Run $h$ attentions in parallel, each with its own $W_Q, W_K, W_V$ and a smaller $d_k = d_{\text{model}}/h$, then concatenate and apply $W_O$. Different heads learn different relations.
-
-**Worked example** (scores already scaled). Token "it" scores $[2, 1, 0]$ against ["robot", "picked", "spoon"]:
-
-- $e^2, e^1, e^0 = 7.39, 2.72, 1$; total $11.11$ → weights $[0.67, 0.24, 0.09]$.
-- Output $= 0.67\,v_{\text{robot}} + 0.24\,v_{\text{picked}} + 0.09\,v_{\text{spoon}}$. It mostly pulls in "robot".
+**Worked example** (scores already scaled). Token "it" scores $[2, 1, 0]$ against ["robot", "picked", "spoon"]: $e^2, e^1, e^0 = 7.39, 2.72, 1$ (total $11.11$) gives weights $[0.67, 0.24, 0.09]$. Output $= 0.67\,v_{\text{robot}} + 0.24\,v_{\text{picked}} + 0.09\,v_{\text{spoon}}$.
 
 ![Attention worked example](../assets/diagrams/attention-example.svg)
 
@@ -118,13 +101,13 @@ So it is a **soft dictionary**: a normal dictionary returns one entry, attention
 |---|---|---|
 | Absolute | Add a fixed vector per position | Fails beyond training length |
 | Relative | Bias scores by token distance | Generalizes to longer sequences |
-| RoPE | Rotate $q, k$ by position-proportional angle, so the dot product depends only on distance | Used in most modern LLMs |
+| RoPE | Rotate $q, k$ by a position-proportional angle, so the dot product depends only on distance | Used in most modern LLMs |
 
 ### 5. The original transformer
 
 - **Encoder:** *bidirectional* self-attention (full input is available).
 - **Decoder:** *causal* self-attention (the mask $M$ above), so each token sees only itself and earlier tokens.
-- **Cross-attention:** queries from the decoder, keys and values from the encoder: "which part of the source matters now?"
+- **Cross-attention:** queries from the decoder, keys and values from the encoder.
 
 ![Transformer encoder-decoder architecture](../assets/diagrams/transformer-architecture.svg)
 
@@ -140,7 +123,7 @@ $$
 \text{cache size} = 2 \times n_{\text{layers}} \times n_{\text{kv heads}} \times d_{\text{head}} \times L \times B \times \text{bytes}
 $$
 
-($L$ = sequence length, $B$ = batch size, 2 = key + value.) Llama-3-8B, 16-bit (32 layers, 8 KV heads, $d_{\text{head}}=128$): **128 KB per token**, about 1 GB at 8k context, about 16 GB at 128k. The weights are about 16 GB, so batch 8 at 128k will not fit on an H100 from the cache alone.
+($L$ = sequence length, $B$ = batch size, 2 = key + value.) Llama-3-8B, 16-bit (32 layers, 8 KV heads, $d_{\text{head}}=128$): **128 KB per token**, about 1 GB at 8k context, about 16 GB at 128k.
 
 Two different memory problems:
 
@@ -168,15 +151,19 @@ The real difference is **when the model decides what to keep**.
 
 ![RNN hidden state vs KV cache](../assets/diagrams/kv-cache-vs-rnn.svg)
 
-**What the cache drops.** It stores two learned projections of each token ($W_K$, $W_V$), not the token itself, so what is dropped is fixed at training time. An RNN compresses *across time* (tokens compete for one slot); the cache compresses *within each token* and every token keeps its own slot. Many heads and layers give many views of each token, and deep-layer entries are contextualized by earlier tokens.
+### 8. Tokens and LLMs
 
-**For robots:** for short episodes it is a wash (frame stacking works). For long tasks that need a memory from minutes ago, keeping raw history and re-reading it wins, at linear memory cost.
+Subword tokens balance vocabulary size against sequence length: characters give very long sequences, whole words cannot represent unseen words, and attention cost is quadratic in length.
 
-### 8. Tokens, LLMs
+**Byte Pair Encoding (BPE)** builds the vocabulary from data:
 
-- **Subword tokens** balance vocabulary size and sequence length (attention cost is quadratic in length). **BPE:** start from characters, repeatedly merge the most frequent adjacent pair until you hit the target vocabulary. Byte-level BPE can encode any input. Expect ~3-4x compression at a ~100k vocabulary.
-- **LLMs** are decoder-only transformers trained on next-token prediction. Scale brought new abilities: zero-shot (GPT-2), in-context learning (GPT-3, 175B).
-- **Bitter lesson (Sutton):** general methods that scale with compute beat handcrafted ones. Open question: what emerges when we scale robot data?
+1. Start with single characters (or raw bytes) as the vocabulary.
+2. Count adjacent pairs and merge the most frequent pair into a new token.
+3. Repeat until the vocabulary reaches the target size (e.g. ~100k).
+
+Common pieces merge early (t + h → th, th + e → the); a rare or brand-new word still splits into known smaller pieces. **Byte-level BPE** starts from raw bytes, so any input (emojis included) can be encoded. At internet scale it gives about 3-4x compression over characters. BPE only works on discrete symbols, which is why continuous actions must be made discrete before it can be used (section 11).
+
+**LLMs** are decoder-only transformers trained on plain next-token prediction. Scale brought new abilities: zero-shot behavior (GPT-2) and in-context learning (GPT-3, 175B parameters: show a few examples in the prompt and it picks up the pattern with no weight updates).
 
 ### 9. Vision transformers (ViT)
 
@@ -184,37 +171,94 @@ To feed images to a transformer, change only the tokenizer: cut the image into p
 
 ![Vision Transformer pipeline](../assets/diagrams/vision-transformer.svg)
 
-1. **Patchify.** Split the image into $P \times P$ patches (224×224 with $P=16$ gives 196 patches).
-2. **Embed.** Flatten each patch ($16 \cdot 16 \cdot 3 = 768$ numbers) and apply one shared linear layer.
-3. **Add position.** Prepend a learnable **[CLS]** token and add a learned position embedding to every token.
+1. **Patchify.** Split the image into $P \times P$ patches (224×224 with $P=16$ gives 14×14 = 196 patches).
+2. **Embed.** Flatten each patch ($16 \cdot 16 \cdot 3 = 768$ numbers) and apply one shared linear layer (768 → 768).
+3. **Add position.** Prepend a learnable **[CLS]** token (196 patches + [CLS] = 197 tokens) and add a learned position embedding to every token.
 4. **Encode.** Standard transformer encoder with *bidirectional* attention (no mask).
 5. **Use the output.** [CLS] feeds a classifier, or the patch tokens go on as image tokens for a VLM or VLA.
 
-Cost grows with (number of patches)$^2$, so smaller patches mean more tokens and much more attention cost. CLIP's vision tower is a ViT.
+Cost grows with (number of patches)$^2$, so smaller patches mean more tokens and much more attention cost.
 
 ### 10. Vision + language (VLMs)
 
-Simply concatenating image and text tokens does not tell the model which words go with which region. Four ways to connect them:
+Simply concatenating image and text tokens does not tell the model which words go with which region. Four ways to connect them, from least to most integrated: CLIP (no LLM), early fusion (image tokens enter the LLM input), late fusion (vision enters inside the LLM via cross-attention), native (everything trained together).
 
-| Approach | How | Trade-off |
-|---|---|---|
-| **CLIP** (two towers) | Separate image and text encoders trained contrastively so matching pairs land close together | Shared embedding space, but no LLM to reason with |
-| **Early fusion** (LLaVA, PaliGemma) | Frozen ViT + small trainable connector; image tokens prepended to text; ordinary self-attention | Richest interaction; risks hurting the LLM. Most common in open source |
-| **Late fusion** (Flamingo) | New cross-attention layers in the LLM: text queries look at visual keys and values. A gate starts at 0, so the model initially behaves exactly like the original LLM | Keeps LLM intact; less interaction |
-| **Native multimodal** | One transformer trained from scratch on interleaved text, images, audio, video | No modality bias, most expensive |
+#### CLIP: two-tower contrastive alignment (Radford et al., 2021)
+
+![CLIP two-tower contrastive alignment](../assets/diagrams/clip-contrastive.svg)
+
+An image encoder (a ViT) and a text encoder (a transformer), each followed by a projection ($W_i$, $W_t$) into one shared space. Train on image-text pairs: a batch of $N$ pairs gives an $N \times N$ matrix of cosine similarities $s_{ij}$, and the diagonal holds the true pairs.
+
+$$
+\mathcal{L}_{\text{CLIP}} = -\frac{1}{2N}\sum_{i=1}^{N}\left[\log\frac{e^{s_{ii}/\tau}}{\sum_{j=1}^{N} e^{s_{ij}/\tau}} + \log\frac{e^{s_{ii}/\tau}}{\sum_{j=1}^{N} e^{s_{ji}/\tau}}\right]
+$$
+
+- **First term (image-to-text):** softmax over row $i$. Given image $i$, pick its text out of $N$.
+- **Second term (text-to-image):** softmax over column $i$. Given text $i$, pick its image out of $N$.
+- Each is an $N$-way cross-entropy with the diagonal as the correct class. The other $N-1$ pairs in the batch act as negatives, so bigger batches give a stronger signal.
+- $\tau$ is a **learnable temperature**: small $\tau$ gives a sharp (low-entropy) softmax, large $\tau$ a flat one.
+- Result: matching images and text land close together, but there is no language model to generate or reason. Its ViT is reused by LLaVA.
+
+#### Early fusion: LLaVA (Liu et al., 2023)
+
+![LLaVA early fusion](../assets/diagrams/llava-early-fusion.svg)
+
+- Frozen CLIP vision encoder → trainable **MLP connector** → 196 image tokens, **prepended** to the text tokens.
+- The LLM (LLaMA) runs ordinary self-attention over all tokens jointly and generates autoregressively. No new attention mechanisms.
+- Richest image-text interaction, but finetuning risks hurting the LLM. Most common in open source (LLaVA, PaliGemma, Gemma 3).
+
+#### Late fusion: Flamingo (Alayrac et al., 2022)
+
+![Flamingo late fusion via gated cross-attention](../assets/diagrams/flamingo-late-fusion.svg)
+
+- Frozen vision encoder → **Perceiver resampler** (compresses to fixed-size keys and values) → **gated cross-attention** layers inserted between frozen LM layers. The LM never sees image tokens directly; text queries look at the visual K, V.
+
+$$
+x \leftarrow x + \tanh(\alpha)\cdot \text{XAttn}(Q_{\text{text}}, K_{\text{vision}}, V_{\text{vision}})
+$$
+
+- $\alpha$ is learned per layer and **starts at 0**, so $\tanh(0)=0$ and the model begins as exactly the original LM; vision is let in gradually.
+- Trained: cross-attention layers, resampler, gates. Frozen: vision encoder, LM. Keeps the LM intact, but gives vision and text fewer ways to interact.
+
+#### Native multimodal
+
+![Native multimodal transformer](../assets/diagrams/native-multimodal.svg)
+
+- Instead of adding vision to an existing LLM, train one transformer **from scratch** on an interleaved stream of text, image, audio and video tokens (each modality has its own encoder or tokenizer; any mix, any order; each is optional).
+- Every weight has always seen every modality, so there is no modality bias. Most expensive, and where big proprietary models are heading.
 
 ### 11. Robot actions as tokens (VLAs)
 
-Same recipe: tokenize the new modality, feed one transformer, scale. Inputs are language and image tokens; outputs are **action tokens**. Attention over history also helps the memory problem.
+Same recipe: tokenize the new modality, feed one transformer, scale. Inputs are language and image tokens; outputs are **action tokens**. Attention over history also helps the memory problem. The open question is how to tokenize continuous actions.
 
-To discretize continuous actions (RT-2, OpenVLA):
+#### Naive tokenization: binning (RT-2, OpenVLA)
 
-1. Per action dimension, clip to the 1st-99th percentile and map to $[-1, 1]$ (min-max would let one outlier squash everything).
-2. Split into 256 bins.
-3. Reuse the 256 least-used LLM tokens as action tokens.
-4. Train with next-token cross-entropy.
+1. Per action dimension, clip to the 1st-99th percentile and map to $[-1, 1]$ (min-max would let one outlier squash everything else).
+2. Split into 256 bins; each bin is a token.
+3. Reuse the 256 least-used LLM vocabulary tokens as the action tokens.
+4. Train with the usual next-token cross-entropy.
 
-**Limit:** at high control frequency consecutive action tokens look nearly identical, so the model can score well by copying the previous one without learning the skill.
+**It breaks at high control frequency.** As frequency increases, information per token decreases (neighboring actions barely differ) and correlation between consecutive tokens increases. The model can score well by copying the previous token without learning the skill. In the lecture's results, task success peaks around 5 Hz and is near zero by 20 Hz. The fix is **compression**.
+
+![Naive action binning and why it fails at high frequency](../assets/diagrams/naive-action-tokenization.svg)
+
+#### Effective tokenization: DCT + BPE
+
+How do you compress continuous robot data? BPE alone is not suited to continuous values, and learned compression (VQ) is complex to train. Key idea: the **Discrete Cosine Transform (DCT)**, the same idea behind JPEG. A smooth action chunk is a sum of cosines of increasing frequency, and most of the information sits in a few low-frequency coefficients:
+
+$$
+c_k = \sum_{t=0}^{T-1} a_t \cos\!\left(\frac{\pi}{T}\left(t+\tfrac12\right)k\right),\qquad k = 0,\dots,T-1
+$$
+
+Quantizing the coefficients to integers zeroes out most high-frequency terms. The result is a sparse integer matrix that BPE can then compress.
+
+![FAST tokenizer pipeline: DCT, quantize, flatten, BPE](../assets/diagrams/fast-tokenizer.svg)
+
+#### FAST (Pertsch et al., RSS 2025)
+
+**F**requency-space **A**ction **S**equence **T**okenization applies the pipeline above to each action chunk (section 12): DCT per action dimension, quantize, flatten with **low-frequency components first** (the model predicts coarse shape before fine detail), then BPE. This gives far fewer, more informative tokens per chunk. It scales to high control frequencies where binning collapses, and trains about 5x faster than the π0 baseline.
+
+![FAST vs naive binning: scaling with frequency and training speed](../assets/diagrams/fast-results.svg)
 
 ### 12. Action chunking
 
@@ -224,27 +268,7 @@ Predict the next $k$ actions as a chunk, run them, then query again. Actions are
 
 - Long chunks (e.g. 100) leave the robot blind while the chunk runs.
 - **Temporal ensembling:** query every step, so each timestep gets several overlapping predictions, blended with exponentially decaying weights. Keeps smoothness and stays responsive.
-- **ACT:** bimanual ALOHA at 50 Hz, chunks of 100 actions × 14 joints = 1,400 values per forward pass. A specialist policy with no LLM; handles precise tasks like battery insertion.
-
-### Takeaway
-
-Find the right representation, use a general scalable architecture, and let data and compute do the work: text, then images, audio, and now robot actions.
-
-## Concept checks
-
-1. A robot sees one camera frame. Name two things it cannot know from that frame alone.
-2. Scores $[2, 1, 0]$ gave weights $[0.67, 0.24, 0.09]$. What are the weights if all three scores are equal?
-3. Why divide by $\sqrt{d_k}$ in the attention equation?
-4. What does the mask $M$ do, and why can a transformer compute every loss in one pass under teacher forcing while an RNN cannot?
-5. Why do relative positional encodings handle longer sequences better than absolute ones?
-6. How does a ViT turn an image into tokens, and why does halving the patch size hurt cost so much?
-7. Compare early fusion, late fusion and native multimodal training. Why does Flamingo start its gate at zero?
-8. Why does predicting a chunk give smoother motion, and what does temporal ensembling add?
-9. In the trajectory equation, which terms vanish when you differentiate with respect to the policy parameters, and why does that matter?
-10. Give an example where identical images and actions lead to different next images. What does it say about conditioning only on $o_t$?
-11. Why are keys and values cached but queries not?
-12. Name the two memory problems in attention. Which does FlashAttention fix, and why not the other?
-13. An RNN and a KV cache both remember the past. When does each decide what to keep?
+- **ACT:** bimanual ALOHA at 50 Hz, chunks of 100 actions × 14 joints = 1,400 values per forward pass. A specialist policy with no LLM.
 
 ---
 
