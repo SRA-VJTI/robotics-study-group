@@ -1,0 +1,43 @@
+<svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+  </defs>
+  <rect width="820" height="320" fill="#ffffff"/>
+
+  <!-- Left chart: success vs frequency -->
+  <text x="50" y="26" fill="#222" font-weight="600" font-size="12">Success vs control frequency (approx.)</text>
+  <rect x="50" y="36" width="10" height="10" fill="#2f6b1a"/><text x="66" y="45" fill="#444" font-size="11">FAST</text>
+  <rect x="112" y="36" width="10" height="10" fill="#b45309"/><text x="128" y="45" fill="#444" font-size="11">naive binning</text>
+  <g stroke="#e5e7eb" stroke-width="1">
+    <line x1="60" y1="250" x2="390" y2="250"/><line x1="60" y1="212" x2="390" y2="212"/><line x1="60" y1="174" x2="390" y2="174"/>
+    <line x1="60" y1="136" x2="390" y2="136"/><line x1="60" y1="98" x2="390" y2="98"/><line x1="60" y1="60" x2="390" y2="60"/>
+  </g>
+  <g stroke="#999" stroke-width="1.2"><line x1="60" y1="60" x2="60" y2="250"/><line x1="60" y1="250" x2="390" y2="250"/></g>
+  <g text-anchor="end" fill="#666" font-size="10">
+    <text x="54" y="253">0</text><text x="54" y="215">2</text><text x="54" y="177">4</text><text x="54" y="139">6</text><text x="54" y="101">8</text><text x="54" y="63">10</text>
+  </g>
+  <text transform="rotate(-90 22 155)" x="22" y="155" text-anchor="middle" fill="#666" font-size="11">success score</text>
+  <path d="M100,191.1 L190,164.5 L280,130.3 L370,117" fill="none" stroke="#2f6b1a" stroke-width="2.2"/>
+  <g fill="#2f6b1a"><circle cx="100" cy="191.1" r="4.5"/><circle cx="190" cy="164.5" r="4.5"/><circle cx="280" cy="130.3" r="4.5"/><circle cx="370" cy="117" r="4.5"/></g>
+  <path d="M100,231 L190,183.5 L280,240.5 L370,249" fill="none" stroke="#b45309" stroke-width="2.2"/>
+  <g fill="#b45309"><circle cx="100" cy="231" r="4.5"/><circle cx="190" cy="183.5" r="4.5"/><circle cx="280" cy="240.5" r="4.5"/><circle cx="370" cy="249" r="4.5"/></g>
+  <g text-anchor="middle" fill="#666" font-size="11"><text x="100" y="267">2 Hz</text><text x="190" y="267">5 Hz</text><text x="280" y="267">10 Hz</text><text x="370" y="267">20 Hz</text></g>
+  <text x="225" y="288" text-anchor="middle" fill="#666" font-size="11">data control frequency</text>
+
+  <!-- Right chart: training speed (schematic) -->
+  <text x="470" y="26" fill="#222" font-weight="600" font-size="12">Training speed (schematic)</text>
+  <rect x="470" y="36" width="10" height="10" fill="#2f6b1a"/><text x="486" y="45" fill="#444" font-size="11">π0 + FAST</text>
+  <rect x="560" y="36" width="10" height="10" fill="#c9a227"/><text x="576" y="45" fill="#444" font-size="11">π0</text>
+  <g stroke="#999" stroke-width="1.2"><line x1="480" y1="60" x2="480" y2="250"/><line x1="480" y1="250" x2="790" y2="250"/></g>
+  <text transform="rotate(-90 452 155)" x="452" y="155" text-anchor="middle" fill="#666" font-size="11">evaluation score</text>
+  <text x="635" y="288" text-anchor="middle" fill="#666" font-size="11">training iterations →</text>
+  <path d="M482,248 C540,215 600,170 700,120 C730,104 760,90 780,80" fill="none" stroke="#c9a227" stroke-width="2.2"/>
+  <path d="M482,248 C505,150 520,95 540,80" fill="none" stroke="#2f6b1a" stroke-width="2.2"/>
+  <circle cx="540" cy="80" r="4.5" fill="#2f6b1a"/>
+  <circle cx="780" cy="80" r="4.5" fill="#ffffff" stroke="#c9a227" stroke-width="2"/>
+  <line x1="776" y1="80" x2="550" y2="80" stroke="#333" stroke-width="1.4" stroke-dasharray="5,4" marker-end="url(#arr)"/>
+  <text x="662" y="70" text-anchor="middle" fill="#222" font-weight="600" font-size="12">5× faster</text>
+  <text x="662" y="98" text-anchor="middle" fill="#666" font-size="11">same score, ~5× fewer iterations</text>
+</svg>
