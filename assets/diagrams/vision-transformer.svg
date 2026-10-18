@@ -1,0 +1,80 @@
+<svg viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect width="760" height="330" fill="#ffffff"/>
+
+  <!-- 1. Image with patch grid -->
+  <text x="75" y="28" text-anchor="middle" font-weight="600" fill="#222">1. Image</text>
+  <rect x="25" y="40" width="100" height="100" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <g stroke="#2563eb" stroke-width="1">
+    <line x1="58" y1="40" x2="58" y2="140"/><line x1="92" y1="40" x2="92" y2="140"/>
+    <line x1="25" y1="73" x2="125" y2="73"/><line x1="25" y1="107" x2="125" y2="107"/>
+  </g>
+  <rect x="58" y="73" width="34" height="34" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="75" y="162" text-anchor="middle" fill="#444">224×224×3</text>
+  <text x="75" y="179" text-anchor="middle" fill="#444">cut into P×P patches</text>
+  <text x="75" y="196" text-anchor="middle" fill="#444">(P=16 → 196 patches)</text>
+
+  <line x1="132" y1="90" x2="170" y2="90" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 2. Flatten + linear projection -->
+  <text x="235" y="28" text-anchor="middle" font-weight="600" fill="#222">2. Flatten + project</text>
+  <rect x="175" y="40" width="120" height="30" rx="4" fill="#fef3c7" stroke="#d97706"/>
+  <text x="235" y="60" text-anchor="middle" fill="#222">patch → 768 numbers</text>
+  <rect x="175" y="86" width="120" height="30" rx="4" fill="#fde68a" stroke="#d97706"/>
+  <text x="235" y="106" text-anchor="middle" fill="#222">linear layer W</text>
+  <rect x="175" y="132" width="120" height="30" rx="4" fill="#fef3c7" stroke="#d97706"/>
+  <text x="235" y="152" text-anchor="middle" fill="#222">patch embedding</text>
+  <line x1="235" y1="70" x2="235" y2="84" stroke="#555" marker-end="url(#arr)"/>
+  <line x1="235" y1="116" x2="235" y2="130" stroke="#555" marker-end="url(#arr)"/>
+  <text x="235" y="182" text-anchor="middle" fill="#444">same W for every patch</text>
+  <text x="235" y="199" text-anchor="middle" fill="#444">= a "patch token"</text>
+
+  <line x1="302" y1="90" x2="340" y2="90" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 3. Token sequence -->
+  <text x="445" y="28" text-anchor="middle" font-weight="600" fill="#222">3. Token sequence</text>
+  <rect x="345" y="52" width="46" height="46" rx="4" fill="#fecaca" stroke="#dc2626"/>
+  <text x="368" y="79" text-anchor="middle" font-weight="600" fill="#222">CLS</text>
+  <g fill="#bbf7d0" stroke="#16a34a">
+    <rect x="399" y="52" width="46" height="46" rx="4"/>
+    <rect x="453" y="52" width="46" height="46" rx="4"/>
+    <rect x="507" y="52" width="46" height="46" rx="4"/>
+  </g>
+  <text x="422" y="79" text-anchor="middle" fill="#222">p1</text>
+  <text x="476" y="79" text-anchor="middle" fill="#222">p2</text>
+  <text x="530" y="79" text-anchor="middle" fill="#222">p3</text>
+  <text x="567" y="79" fill="#222">…</text>
+  <g fill="#e9d5ff" stroke="#9333ea">
+    <rect x="345" y="108" width="46" height="22" rx="4"/>
+    <rect x="399" y="108" width="46" height="22" rx="4"/>
+    <rect x="453" y="108" width="46" height="22" rx="4"/>
+    <rect x="507" y="108" width="46" height="22" rx="4"/>
+  </g>
+  <text x="449" y="147" text-anchor="middle" fill="#6b21a8">+ position embedding (learned, one per slot)</text>
+  <text x="449" y="182" text-anchor="middle" fill="#444">CLS = extra learnable token that</text>
+  <text x="449" y="199" text-anchor="middle" fill="#444">collects a summary of the image</text>
+
+  <line x1="595" y1="90" x2="625" y2="90" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 4. Encoder -->
+  <text x="690" y="28" text-anchor="middle" font-weight="600" fill="#222">4. Encoder</text>
+  <rect x="630" y="40" width="120" height="100" rx="6" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="690" y="70" text-anchor="middle" fill="#222">Transformer</text>
+  <text x="690" y="88" text-anchor="middle" fill="#222">× L layers</text>
+  <text x="690" y="112" text-anchor="middle" fill="#444" font-size="12">bidirectional</text>
+  <text x="690" y="127" text-anchor="middle" fill="#444" font-size="12">self-attention</text>
+  <line x1="690" y1="140" x2="690" y2="172" stroke="#555" marker-end="url(#arr)"/>
+  <rect x="630" y="176" width="120" height="30" rx="4" fill="#fecaca" stroke="#dc2626"/>
+  <text x="690" y="196" text-anchor="middle" fill="#222">CLS → class</text>
+  <rect x="630" y="214" width="120" height="30" rx="4" fill="#bbf7d0" stroke="#16a34a"/>
+  <text x="690" y="234" text-anchor="middle" fill="#222">patches → VLM/VLA</text>
+
+  <!-- Bottom note -->
+  <rect x="25" y="262" width="710" height="52" rx="6" fill="#f3f4f6" stroke="#d1d5db"/>
+  <text x="380" y="283" text-anchor="middle" fill="#222">A ViT is an ordinary transformer. Only the tokenizer changes: patches replace subwords.</text>
+  <text x="380" y="302" text-anchor="middle" fill="#444">Cost scales with (number of patches)², so halving P quadruples tokens and ~16× the attention cost.</text>
+</svg>
