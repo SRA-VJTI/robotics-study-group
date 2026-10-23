@@ -24,4 +24,4 @@ Keep generated checkpoints, datasets, videos, credentials, and course material w
 
 ## Pull requests
 
-Use a focused title such as `week 03: add DAgger experiment`. In the description, state what changed, how it was checked, and what remains uncertain.
+Use a focused title such as `imitation learning: add DAgger experiment`. In the description, state what changed, how it was checked, and what remains uncertain.

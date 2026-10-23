@@ -1,13 +1,10 @@
 # Robotics Study Group
 
-An 11-week, build-first path from robot-learning fundamentals to modern robot foundation models. The roadmap is adapted for the SRA VJTI study group from ETH Zurich's **Robot Learning: From Fundamentals to Foundation Models** course.
-
-> [!IMPORTANT]
-> All 515 slides from the 11 ETH lecture decks are rendered locally under redistribution permission confirmed for this repository. The deck renders retain their original copyright and are not covered by this repository's MIT license. No deck password is stored here.
+A build-first path from robot-learning fundamentals to modern robot foundation models, adapted for the SRA VJTI study group from ETH Zurich's **Robot Learning: From Fundamentals to Foundation Models** course.
 
 ![Robot learning system loop](assets/diagrams/week-01-learning-loop.svg)
 
-Each lecture page contains the complete source deck plus original study-group diagrams, key equations, implementation notes, failure modes, evaluation checks, paper prompts, and a build milestone. Start at [Week 1](curriculum/week-01-introduction.md) or jump directly to the topic you need below.
+Each topic gets a written notes page with original study-group diagrams, key equations, implementation notes, and failure modes. Notes are written up as we cover each topic — [Imitation Learning](curriculum/week-03-imitation-learning.md) is the current worked example of the format.
 
 ## What we will learn
 
@@ -17,30 +14,30 @@ Each lecture page contains the complete source deck plus original study-group di
 - Read modern VLA and generalist-policy papers critically.
 - Finish with a small, reproducible robot-learning capstone.
 
-## Weekly roadmap
+## Topics
 
-| Week | Topic | Complete lecture | Slides | Build milestone |
-| ---: | --- | --- | ---: | --- |
-| 1 | Introduction to Robot Learning | [Open lecture](curriculum/week-01-introduction.md) | 44 | Define a robot task and evaluation contract |
-| 2 | Robot Control and MDPs | [Open lecture](curriculum/week-02-control-and-mdps.md) | 46 | PID/control baseline plus a tiny MDP solver |
-| 3 | Imitation Learning | [Open notes](curriculum/week-03-imitation-learning.md) | — | Behavior cloning and DAgger comparison |
-| 4 | Reinforcement Learning I | [Open lecture](curriculum/week-04-reinforcement-learning-i.md) | 45 | Value iteration and DQN baseline |
-| 5 | Reinforcement Learning II | [Open lecture](curriculum/week-05-reinforcement-learning-ii.md) | 36 | PPO or SAC with a clean evaluation loop |
-| 6 | Generative Models for Control | [Open lecture](curriculum/week-06-generative-models.md) | 39 | Multimodal action-policy prototype |
-| 7 | Sequence Models and Transformers | [Open lecture](curriculum/week-07-sequence-modeling.md) | 39 | Train an action-sequence transformer |
-| 8 | World Models | [Open lecture](curriculum/week-08-world-models.md) | 55 | Learn and test a latent dynamics model |
-| 9 | Generalist Robot Policies | [Open lecture](curriculum/week-09-generalist-policies.md) | 59 | Design a multi-task policy/data interface |
-| 10 | Embodied Reasoning and Test-time Scaling | [Open lecture](curriculum/week-10-embodied-reasoning.md) | 57 | Add candidate generation and verification |
-| 11 | Frontiers and Open Problems | [Open lecture](curriculum/week-11-frontiers.md) | 50 | Present a reproducible capstone proposal |
+| Topic | Notes | Build milestone |
+| --- | --- | --- |
+| Introduction to Robot Learning | [Open](curriculum/week-01-introduction.md) | Define a robot task and evaluation contract |
+| Robot Control and MDPs | [Open](curriculum/week-02-control-and-mdps.md) | PID/control baseline plus a tiny MDP solver |
+| Imitation Learning | [Open](curriculum/week-03-imitation-learning.md) | Behavior cloning and DAgger comparison |
+| Reinforcement Learning I | [Open](curriculum/week-04-reinforcement-learning-i.md) | Value iteration and DQN baseline |
+| Reinforcement Learning II | [Open](curriculum/week-05-reinforcement-learning-ii.md) | PPO or SAC with a clean evaluation loop |
+| Generative Models for Control | [Open](curriculum/week-06-generative-models.md) | Multimodal action-policy prototype |
+| Sequence Models and Transformers | [Open](curriculum/week-07-sequence-modeling.md) | Train an action-sequence transformer |
+| World Models | [Open](curriculum/week-08-world-models.md) | Learn and test a latent dynamics model |
+| Generalist Robot Policies | [Open](curriculum/week-09-generalist-policies.md) | Design a multi-task policy/data interface |
+| Embodied Reasoning and Test-time Scaling | [Open](curriculum/week-10-embodied-reasoning.md) | Add candidate generation and verification |
+| Frontiers and Open Problems | [Open](curriculum/week-11-frontiers.md) | Present a reproducible capstone proposal |
 
 The full reading list, track structure, and recommended session format live in the [curriculum guide](curriculum/README.md).
 
 ## How each session runs
 
-1. **Before:** watch the lecture or skim the guide; one member reads each assigned paper.
-2. **Concept check (30 min):** explain the week's central idea without slides.
+1. **Before:** skim the notes; one member reads each assigned paper.
+2. **Concept check (30 min):** explain the topic's central idea from memory.
 3. **Paper discussion (30 min):** identify the claim, evidence, assumptions, and failure modes.
-4. **Build sprint (50 min):** implement the week's smallest measurable milestone.
+4. **Build sprint (50 min):** implement the topic's smallest measurable milestone.
 5. **Wrap-up (10 min):** record results, blockers, and the owner of the next action.
 
 ## Definition of done
