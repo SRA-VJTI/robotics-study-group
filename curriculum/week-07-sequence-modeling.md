@@ -1,6 +1,6 @@
-# Week 07 — Sequence Modeling and Transformers
+# Sequence Models and Transformers
 
-[← Generative Models](week-06-generative-models.md) · **Week 7 of 11** · [Next: World Models →](week-08-world-models.md)
+[← All topics](README.md)
 
 **Know these first:** reactive policies, RNNs, MDP, POMDP
 **Topics:** RNNs, transformers, ViTs, LLMs, VLMs, VLAs (basic)

@@ -10,9 +10,9 @@ The ETH course page, lecture recordings, slide decks, papers, and official homew
 
 The study guides, SVG concept diagrams, discussion prompts, session plans, and build milestones in this repository are original SRA VJTI study-group material. They summarize general technical ideas and point readers to primary sources.
 
-## Republished lecture decks
+## Archived lecture decks
 
-The 11 lecture decks are reproduced as 515 page-faithful JPEG renders under redistribution permission confirmed for this repository. These renders preserve the original slide layouts, text, figures, and images. They retain the copyright and reuse terms of the source decks and are not covered by this repository's MIT license.
+The 11 lecture decks were reproduced as 515 page-faithful JPEG renders under redistribution permission confirmed for this repository. They are retained under `assets/lectures/` but are no longer published to the website. These renders preserve the original slide layouts, text, figures, and images. They retain the copyright and reuse terms of the source decks and are not covered by this repository's MIT license.
 
 The access password is not stored in the repository or website. Permission to view these renders does not automatically grant permission to reuse individual third-party images contained within the decks.
 

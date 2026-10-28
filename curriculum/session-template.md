@@ -1,4 +1,4 @@
-# Week NN — Topic
+# Topic
 
 ## Outcomes
 
