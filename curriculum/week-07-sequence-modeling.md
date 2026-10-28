@@ -116,7 +116,7 @@ Absolute (sinusoidal) encodings are from [*Attention Is All You Need*](https://a
 - **Decoder:** *causal* self-attention (the mask $M$ above), so each token sees only itself and earlier tokens.
 - **Cross-attention:** queries from the decoder, keys and values from the encoder.
 
-![Transformer encoder-decoder architecture](../assets/diagrams/transformer-architecture.svg)
+![Transformer encoder-decoder architecture](../assets/diagrams/transformer-arch.png)
 
 See [*Attention Is All You Need*](https://arxiv.org/abs/1706.03762) (Vaswani et al., 2017).
 
@@ -158,8 +158,6 @@ The real difference is **when the model decides what to keep**.
 | Training | Sequential in $L$ | Parallel over $L$ |
 | Cost per generated token | $O(d^2)$, constant | $O(L \cdot d)$, grows |
 
-![RNN hidden state vs KV cache](../assets/diagrams/kv-cache-vs-rnn.svg)
-
 
 ### 8. Tokens and LLMs
 
@@ -179,7 +177,7 @@ Common pieces merge early (t + h → th, th + e → the); a rare or brand-new wo
 
 To feed images to a transformer, change only the tokenizer: cut the image into patches and treat each patch as a token. This is the Vision Transformer (ViT) of [Dosovitskiy et al., 2020](https://arxiv.org/abs/2010.11929) (“An Image is Worth 16x16 Words”).
 
-![Vision Transformer pipeline](../assets/diagrams/vision-transformer.svg)
+![Vision Transformer pipeline](../assets/diagrams/vision-transformer.png)
 
 See [*An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale*](https://arxiv.org/abs/2010.11929) (Dosovitskiy et al., 2020). ViT-Base/16: 224×224 input, 16×16 patches, 768-d tokens.
 
@@ -197,7 +195,7 @@ Simply concatenating image and text tokens does not tell the model which words g
 
 #### CLIP: two-tower contrastive alignment (Radford et al., 2021)
 
-![CLIP two-tower contrastive alignment](../assets/diagrams/clip-contrastive.svg)
+![CLIP two-tower contrastive alignment](../assets/diagrams/clip-contrastive.png)
 
 See [*Learning Transferable Visual Models From Natural Language Supervision*](https://arxiv.org/abs/2103.00020) (Radford et al., 2021).
 
@@ -225,7 +223,7 @@ See [*Visual Instruction Tuning*](https://arxiv.org/abs/2304.08485) (Liu et al.,
 
 #### Late fusion: Flamingo (Alayrac et al., 2022)
 
-![Flamingo late fusion via gated cross-attention](../assets/diagrams/flamingo-late-fusion.svg)
+![Flamingo late fusion via gated cross-attention](../assets/diagrams/flamingo-late-fusion.png)
 
 See [*Flamingo: a Visual Language Model for Few-Shot Learning*](https://arxiv.org/abs/2204.14198) (Alayrac et al., 2022).
 
@@ -247,20 +245,29 @@ $$
 
 ### 11. Robot actions as tokens (VLAs)
 
-Same recipe: tokenize the new modality, feed one transformer, scale. Inputs are language and image tokens; outputs are **action tokens**. Attention over history also helps the memory problem. The open question is how to tokenize continuous actions.
 
-#### Naive tokenization: binning (RT-2: Brohan et al., 2023; OpenVLA: Kim et al., 2024)
+#### What is a VLA? (RT-2: Brohan et al., 2023; OpenVLA: Kim et al., 2024)
 
-1. Per action dimension, clip to the 1st-99th percentile and map to $[-1, 1]$ (min-max would let one outlier squash everything else).
-2. Split into 256 bins; each bin is a token.
-3. Reuse the 256 least-used LLM vocabulary tokens as the action tokens.
-4. Train with the usual next-token cross-entropy.
+A **vision-language-action model** takes camera images and a language instruction ("pick up the red cup") and outputs robot actions. The idea is to start from a pretrained vision-language model (VLM), which already understands images and text, and teach it to output actions too.
 
-**It breaks at high control frequency.** As frequency increases, information per token decreases (neighboring actions barely differ) and correlation between consecutive tokens increases. The model can score well by copying the previous token without learning the skill. In the lecture's results (from [Pertsch et al., 2025](https://arxiv.org/abs/2501.09747)), task success peaks around 5 Hz and is near zero by 20 Hz. The fix is **compression**.
+**First, what is binning?** Binning means splitting a continuous range of numbers into a fixed set of buckets and replacing each number with the index of its bucket. Say a gripper opening goes from 0 (closed) to 1 (open) and we use 4 bins: 0 to 0.25, 0.25 to 0.5, 0.5 to 0.75, and 0.75 to 1. A gripper value of 0.6 lands in bin 3, so we store "3" instead of 0.6. We lose a little precision, since everything inside a bin is treated as the same value, but a continuous number has become one of a few discrete labels. Discrete labels are exactly what a language model knows how to predict.
 
-![Naive action binning and why it fails at high frequency](../assets/diagrams/naive-action-tokenization.svg)
+**The pipeline:**
 
-See [*OpenVLA: An Open-Source Vision-Language-Action Model*](https://arxiv.org/abs/2406.09246) (Kim et al., 2024). Frequency-vs-success results are from [*FAST: Efficient Action Tokenization for Vision-Language-Action Models*](https://arxiv.org/abs/2501.09747) 
+1. A vision encoder turns the camera image into tokens.
+2. The instruction is tokenized as usual.
+3. A language model backbone reads both and predicts the next tokens.
+4. Those output tokens are decoded into robot actions (for example, end-effector position, rotation, gripper open/close).
+
+**How do you get actions out of a language model?** Treat actions like words. Bin each action dimension into 256 buckets, give each bucket its own token, and train with the same next-token loss used for text. This is how RT-2 and OpenVLA work.
+
+**Why bother with a VLM at all?** Pretraining on internet-scale data gives the robot object recognition and language understanding for free. That is why VLAs can follow instructions they never saw in robot data, like "pick up the extinct animal" and grab the toy dinosaur.
+
+**Where it falls short:** binning works at low control rates but struggles when the robot needs to act fast and smoothly. Better action tokenizers (like FAST, Pertsch et al., 2025) exist for this, and we will come back to them later.
+
+![Open VLA pipeline](../assets/diagrams/openvla.png)
+
+See [*OpenVLA: An Open-Source Vision-Language-Action Model*](https://arxiv.org/abs/2406.09246) (Kim et al., 2024). 
 
 #### Effective tokenization: DCT + BPE
 
@@ -272,7 +279,7 @@ $$
 
 Quantizing the coefficients to integers zeroes out most high-frequency terms. The result is a sparse integer matrix that BPE can then compress.
 
-![FAST tokenizer pipeline: DCT, quantize, flatten, BPE](../assets/diagrams/fast-tokenizer.svg)
+![FAST tokenizer pipeline: DCT, quantize, flatten, BPE](../assets/diagrams/fast-tokenizer.png)
 
 See [*FAST: Efficient Action Tokenization for Vision-Language-Action Models*](https://arxiv.org/abs/2501.09747) (Pertsch et al., 2025).
 
@@ -280,9 +287,6 @@ See [*FAST: Efficient Action Tokenization for Vision-Language-Action Models*](ht
 
 **F**requency-space **A**ction **S**equence **T**okenization applies the pipeline above to each action chunk (section 12): DCT per action dimension, quantize, flatten with **low-frequency components first** (the model predicts coarse shape before fine detail), then BPE. This gives far fewer, more informative tokens per chunk. It scales to high control frequencies where binning collapses, and trains about 5x faster than the π0 baseline (π0: [Black et al., 2024](https://arxiv.org/abs/2410.24164)).
 
-![FAST vs naive binning: scaling with frequency and training speed](../assets/diagrams/fast-results.svg)
-
-See [*FAST: Efficient Action Tokenization for Vision-Language-Action Models*](https://arxiv.org/abs/2501.09747) (Pertsch et al., 2025). The left plot is an approximate redraw of the lecture slide; the right plot is schematic.
 
 ### 12. Action chunking
 
@@ -297,7 +301,7 @@ See [*Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware*](https
 
 #### ACT: Action Chunking with Transformers (Zhao et al., 2023)
 
-![ACT architecture](../assets/diagrams/act-architecture.svg)
+![ACT architecture](../assets/diagrams/act-architecture.png)
 
 See [*Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware*](https://arxiv.org/abs/2304.13705) (Zhao et al., 2023).
 
