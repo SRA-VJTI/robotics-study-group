@@ -11,7 +11,7 @@
 ### 0. Glossary
 
 | Term | Meaning |
-|---|---|
+| --- | --- |
 | Token | One unit the model reads: a subword, an image patch, or an action value |
 | Embedding | Vector of numbers representing a token |
 | Autoregressive | Generates one token at a time, each conditioned on all earlier ones |
@@ -39,7 +39,7 @@ p_\pi(\tau) = \rho(s_0) \prod_{t=0}^{T-1} \pi(a_t \mid o_t)\, P(o_{t+1} \mid o_t
 $$
 
 | Piece | Meaning |
-|---|---|
+| --- | --- |
 | $\rho(s_0)$ | How the world starts (e.g. random object positions) |
 | $\pi(a_t \mid o_t)$ | Policy: how likely is this action given what the robot sees |
 | $P(o_{t+1} \mid o_t, a_t)$ | The world's reply to the action |
@@ -64,7 +64,6 @@ An **RNN** models each conditional with a hidden state updated each step, $h_t =
 
 ![RNN unrolled over time](../assets/diagrams/rnn-unrolled.svg)
 
-
 ### 4. Attention
 
 Every token looks at every other token in one hop and decides which matter. This fixes all three RNN problems: direct long-range links, parallel training, no single bottleneck vector ([Vaswani et al., 2017](https://arxiv.org/abs/1706.03762)).
@@ -84,7 +83,7 @@ $$
 $$
 
 | Piece | Shape | What it does |
-|---|---|---|
+| --- | --- | --- |
 | $W_Q, W_K, W_V$ | $d_{\text{model}} \times d_k$ | Learned projections that create $q$, $k$, $v$ |
 | $QK^\top$ | $n \times n$ | Entry $(i,j)$ = dot product of query $i$ with key $j$: how relevant token $j$ is to token $i$ |
 | $\sqrt{d_k}$ | scalar | Dot products of $d_k$-dim vectors have variance $\propto d_k$. Without scaling, large scores saturate softmax and gradients vanish |
@@ -103,7 +102,7 @@ See [*Attention Is All You Need*](https://arxiv.org/abs/1706.03762) (Vaswani et 
 **Positional encodings.** The dot product ignores order, so position must be injected.
 
 | Type | Idea | Note |
-|---|---|---|
+| --- | --- | --- |
 | Absolute | Add a fixed vector per position | Fails beyond training length |
 | Relative | Bias scores by token distance | Generalizes to longer sequences |
 | RoPE | Rotate $q, k$ by a position-proportional angle, so the dot product depends only on distance | Used in most modern LLMs |
@@ -137,7 +136,7 @@ $$
 Two different memory problems:
 
 | | Attention matrix | KV cache |
-|---|---|---|
+| --- | --- | --- |
 | Hurts during | Training, prefill | Decode |
 | Grows as | $L^2$ | $L$ |
 | At $L$ = 8k | ~4 GB per layer per sequence | ~1 GB whole model |
@@ -150,14 +149,13 @@ Two different memory problems:
 The real difference is **when the model decides what to keep**.
 
 | | RNN hidden state | KV cache |
-|---|---|---|
+| --- | --- | --- |
 | Size | Fixed, $O(d)$ | Grows, $O(L \cdot d)$ |
 | Past tokens | Blended into one summary | Stored separately, never overwritten |
 | What to keep is decided | At write time, blind to future questions | At read time, by the current query |
 | Access to old tokens | Through the bottleneck | Direct, one hop |
 | Training | Sequential in $L$ | Parallel over $L$ |
 | Cost per generated token | $O(d^2)$, constant | $O(L \cdot d)$, grows |
-
 
 ### 8. Tokens and LLMs
 
@@ -245,7 +243,6 @@ $$
 
 ### 11. Robot actions as tokens (VLAs)
 
-
 #### What is a VLA? (RT-2: Brohan et al., 2023; OpenVLA: Kim et al., 2024)
 
 A **vision-language-action model** takes camera images and a language instruction ("pick up the red cup") and outputs robot actions. The idea is to start from a pretrained vision-language model (VLM), which already understands images and text, and teach it to output actions too.
@@ -267,7 +264,7 @@ A **vision-language-action model** takes camera images and a language instructio
 
 ![Open VLA pipeline](../assets/diagrams/openvla.png)
 
-See [*OpenVLA: An Open-Source Vision-Language-Action Model*](https://arxiv.org/abs/2406.09246) (Kim et al., 2024). 
+See [*OpenVLA: An Open-Source Vision-Language-Action Model*](https://arxiv.org/abs/2406.09246) (Kim et al., 2024).
 
 #### Effective tokenization: DCT + BPE
 
@@ -286,7 +283,6 @@ See [*FAST: Efficient Action Tokenization for Vision-Language-Action Models*](ht
 #### FAST (Pertsch et al., RSS 2025)
 
 **F**requency-space **A**ction **S**equence **T**okenization applies the pipeline above to each action chunk (section 12): DCT per action dimension, quantize, flatten with **low-frequency components first** (the model predicts coarse shape before fine detail), then BPE. This gives far fewer, more informative tokens per chunk. It scales to high control frequencies where binning collapses, and trains about 5x faster than the π0 baseline (π0: [Black et al., 2024](https://arxiv.org/abs/2410.24164)).
-
 
 ### 12. Action chunking
 
